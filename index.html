@@ -486,70 +486,74 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
 @media (max-width: 768px) {
   /* フォントサイズをモバイル向けに縮小 */
   :root {
-    --h2: clamp(0.95rem, 3.8vw, 1.5rem);
-    --body: clamp(0.62rem, 2vw, 0.78rem);
-    --small: clamp(0.55rem, 1.6vw, 0.68rem);
-    --mono: clamp(0.48rem, 1.5vw, 0.6rem);
+    --h2: clamp(1rem, 4vw, 1.6rem);
+    --body: clamp(0.65rem, 2.1vw, 0.82rem);
+    --small: clamp(0.57rem, 1.7vw, 0.7rem);
+    --mono: clamp(0.5rem, 1.6vw, 0.62rem);
     --pad: clamp(0.6rem, 2.5vw, 1.2rem);
-    --gap: clamp(0.3rem, 1vw, 0.6rem);
+    --gap: clamp(0.3rem, 1vw, 0.55rem);
   }
 
-  /* std-layout: 2列維持（テキスト左・フォン右）、余白縮小 */
-  .std-layout {
-    padding: clamp(2rem, 7vh, 3rem) clamp(0.6rem, 2.5vw, 1rem) clamp(0.5rem, 1.5vh, 0.8rem);
-    gap: clamp(0.4rem, 1.5vw, 0.7rem);
-  }
-
-  /* タイトルスライドのみ縦1列（内容量が多いため） */
+  /* std-layout・title-layout: テキスト上・フォン下の縦積み */
+  .std-layout,
   .title-layout {
     grid-template-columns: 1fr;
     align-items: start;
-    padding: clamp(2rem, 7vh, 3rem) clamp(0.6rem, 2.5vw, 1rem) clamp(0.5rem, 1.5vh, 0.8rem);
+    padding: clamp(2rem, 7vh, 3rem) clamp(0.6rem, 2.5vw, 1rem) clamp(0.4rem, 1.5vh, 0.7rem);
+    gap: clamp(0.4rem, 1.2vh, 0.7rem);
   }
-  .title-phone-col { justify-content: center; }
 
-  /* フォン: 画面幅の30%（100〜130px） */
-  .phone { width: clamp(100px, 30vw, 130px); }
+  /* フォン列: 中央寄せ */
+  .phone-col, .title-phone-col { justify-content: center; }
 
-  /* 説明段落: 行数を制限してコンパクトに（内容は維持） */
+  /* フォン: 幅30vwで高さを自動制限（最大38vh） */
+  .phone {
+    width: clamp(110px, 30vw, 145px);
+    max-height: 38vh;
+  }
+
+  /* 説明段落: 2行クランプで全スライド表示 */
   .slide-p {
     max-width: 100%;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
-  /* プルーフバッジ: フォント縮小で1行に収める */
+  /* プルーフバッジ: 縮小して1行に */
   .customer-proof {
-    font-size: clamp(0.55rem, 1.6vw, 0.68rem);
+    font-size: clamp(0.58rem, 1.7vw, 0.7rem);
     padding: 0.3em 0.6em;
     gap: 0.3em;
   }
 
-  /* 箇条書き間隔・フォントを縮小 */
-  .bullet-list { gap: clamp(0.15rem, 0.5vh, 0.35rem); }
-  .bullet-item { font-size: clamp(0.6rem, 1.9vw, 0.75rem); line-height: 1.35; }
+  /* 箇条書き */
+  .bullet-list { gap: clamp(0.2rem, 0.6vh, 0.4rem); }
+  .bullet-item { font-size: clamp(0.63rem, 2vw, 0.78rem); line-height: 1.35; }
 
-  /* テキスト列のギャップを詰める */
+  /* テキスト列ギャップ */
   .text-col { gap: clamp(0.25rem, 0.8vh, 0.45rem); }
 
   /* バリューストリップ: 1列 */
   .value-strip { grid-template-columns: 1fr; max-width: 100%; }
   .value-card { padding: 0.45em 0.6em; }
-  .value-copy { font-size: clamp(0.58rem, 1.7vw, 0.7rem); margin-top: 0.15em; }
+  .value-copy { font-size: clamp(0.6rem, 1.8vw, 0.72rem); margin-top: 0.15em; }
 
-  /* サマリーグリッド: 3列→2列 */
+  /* サマリーグリッド: 2列・説明文は非表示 */
   .sum-grid { grid-template-columns: repeat(2, 1fr); }
   .sum-card { padding: clamp(0.4rem, 1vh, 0.7rem); }
-  .sum-desc { display: none; } /* サマリーカードは見出しのみで十分 */
+  .sum-desc { display: none; }
+
+  /* ログインボタン: テキスト折り返し禁止 */
+  .login-social-btn { white-space: nowrap; }
 
   /* ナビドット・アクセントバー非表示 */
   .nav-dots, .slide-accent-bar { display: none; }
 
-  /* スライドカウンター位置調整 */
+  /* スライドカウンター */
   .slide-counter { bottom: 0.4rem; right: 0.6rem; }
 }
 
