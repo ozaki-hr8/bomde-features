@@ -484,34 +484,66 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
 
 /* ===== RESPONSIVE: スマートフォン対応 ===== */
 @media (max-width: 768px) {
+  /* フォントサイズをモバイル向けに縮小 */
+  :root {
+    --h2: clamp(0.95rem, 3.8vw, 1.5rem);
+    --body: clamp(0.62rem, 2vw, 0.78rem);
+    --small: clamp(0.55rem, 1.6vw, 0.68rem);
+    --mono: clamp(0.48rem, 1.5vw, 0.6rem);
+    --pad: clamp(0.6rem, 2.5vw, 1.2rem);
+    --gap: clamp(0.3rem, 1vw, 0.6rem);
+  }
+
   /* std-layout: 2列維持（テキスト左・フォン右）、余白縮小 */
   .std-layout {
-    padding: clamp(2.8rem, 9vh, 4rem) clamp(0.75rem, 3vw, 1.2rem) clamp(0.6rem, 2vh, 1rem);
-    gap: clamp(0.5rem, 1.5vw, 0.8rem);
+    padding: clamp(2rem, 7vh, 3rem) clamp(0.6rem, 2.5vw, 1rem) clamp(0.5rem, 1.5vh, 0.8rem);
+    gap: clamp(0.4rem, 1.5vw, 0.7rem);
   }
 
   /* タイトルスライドのみ縦1列（内容量が多いため） */
   .title-layout {
     grid-template-columns: 1fr;
     align-items: start;
-    padding: clamp(2.8rem, 9vh, 4rem) clamp(0.75rem, 3vw, 1.2rem) clamp(0.6rem, 2vh, 1rem);
+    padding: clamp(2rem, 7vh, 3rem) clamp(0.6rem, 2.5vw, 1rem) clamp(0.5rem, 1.5vh, 0.8rem);
   }
   .title-phone-col { justify-content: center; }
 
-  /* フォン: 画面幅の33%（110〜145px）*/
-  .phone { width: clamp(110px, 33vw, 145px); }
+  /* フォン: 画面幅の30%（100〜130px） */
+  .phone { width: clamp(100px, 30vw, 130px); }
 
-  /* 説明段落・プルーフバッジ: 非表示（h2・箇条書きを優先） */
-  .slide-p, .customer-proof { display: none; }
+  /* 説明段落: 行数を制限してコンパクトに（内容は維持） */
+  .slide-p {
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+  }
 
-  /* 箇条書き間隔を縮小 */
-  .bullet-list { gap: clamp(0.2rem, 0.6vh, 0.45rem); }
+  /* プルーフバッジ: フォント縮小で1行に収める */
+  .customer-proof {
+    font-size: clamp(0.55rem, 1.6vw, 0.68rem);
+    padding: 0.3em 0.6em;
+    gap: 0.3em;
+  }
+
+  /* 箇条書き間隔・フォントを縮小 */
+  .bullet-list { gap: clamp(0.15rem, 0.5vh, 0.35rem); }
+  .bullet-item { font-size: clamp(0.6rem, 1.9vw, 0.75rem); line-height: 1.35; }
+
+  /* テキスト列のギャップを詰める */
+  .text-col { gap: clamp(0.25rem, 0.8vh, 0.45rem); }
 
   /* バリューストリップ: 1列 */
   .value-strip { grid-template-columns: 1fr; max-width: 100%; }
+  .value-card { padding: 0.45em 0.6em; }
+  .value-copy { font-size: clamp(0.58rem, 1.7vw, 0.7rem); margin-top: 0.15em; }
 
-  /* サマリーグリッド: 4列→2列 */
+  /* サマリーグリッド: 3列→2列 */
   .sum-grid { grid-template-columns: repeat(2, 1fr); }
+  .sum-card { padding: clamp(0.4rem, 1vh, 0.7rem); }
+  .sum-desc { display: none; } /* サマリーカードは見出しのみで十分 */
 
   /* ナビドット・アクセントバー非表示 */
   .nav-dots, .slide-accent-bar { display: none; }
