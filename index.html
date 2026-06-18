@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOMDE — 魅力紹介</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,700;0,900;1,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* === THEME === */
+:root {
+  --navy:#060b1a; --navy-mid:#0d1630;
+  --cyan:#00f5d4; --magenta:#ff2d78; --amber:#ffb830;
+  --text:#e2f0f8; --text-dim:rgba(226,240,248,0.45);
+  --grid-c:rgba(0,245,212,0.055);
+  --glow-c:0 0 16px rgba(0,245,212,0.6),0 0 50px rgba(0,245,212,0.18);
+  --glow-m:0 0 16px rgba(255,45,120,0.6),0 0 50px rgba(255,45,120,0.18);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  /* App colors (inside phone) */
+  --app-primary:#3DDAD7; --app-secondary:#2A93D5;
+  --app-good:#37B679; --app-bad:#E65A5A;
+  --app-bg:#EDFAFD; --app-text:#333333; --app-gray:#888888;
+  /* Typography */
+  --ts:clamp(2.2rem,6.5vw,6rem); --h2:clamp(1.3rem,3.2vw,2.6rem);
+  --body:clamp(0.76rem,1.35vw,1rem); --small:clamp(0.62rem,0.95vw,0.78rem);
+  --mono:clamp(0.58rem,0.9vw,0.72rem);
+  --pad:clamp(1.5rem,4.5vw,4.5rem); --gap:clamp(0.5rem,1.6vw,1.4rem);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow-x:hidden;background:var(--navy);color:var(--text);font-family:'Exo 2',sans-serif;}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+.slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;position:relative;}
+.slide-content{flex:1;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden;}
+@media(max-height:700px){:root{--pad:clamp(1rem,3vw,2.2rem);--gap:clamp(0.4rem,1.1vw,0.9rem);--h2:clamp(1.1rem,2.8vw,1.9rem);}}
+@media(max-height:600px){:root{--pad:clamp(0.7rem,2.2vw,1.5rem);--ts:clamp(1.6rem,4.5vw,3rem);}
+  .nav-dots,.keyboard-hint,.deco{display:none;}}
+@media(max-height:500px){:root{--ts:clamp(1.1rem,3.5vw,1.8rem);--h2:clamp(0.88rem,2.3vw,1.3rem);}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.2s!important;}html{scroll-behavior:auto;}}
+@media(max-width:760px){.value-strip{grid-template-columns:1fr;}.value-card{padding:.65em .75em;}}
+
+/* === GRID BG === */
+.slide-bg{position:absolute;inset:0;
+  background:linear-gradient(var(--grid-c) 1px,transparent 1px),linear-gradient(90deg,var(--grid-c) 1px,transparent 1px);
+  background-size:55px 55px;pointer-events:none;}
+.slide-bg::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 75% 65% at 50% 50%,rgba(6,11,26,0) 0%,var(--navy) 100%);}
+
+/* === GLOBAL UI === */
+.progress-bar{position:fixed;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--magenta));
+  transform-origin:left;transform:scaleX(0);z-index:1000;transition:transform .3s ease;box-shadow:var(--glow-c);}
+.nav-dots{position:fixed;right:clamp(0.6rem,1.5vw,1.2rem);top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:7px;z-index:1000;}
+.nav-dot{width:5px;height:5px;border-radius:50%;background:rgba(0,245,212,.22);cursor:pointer;
+  transition:all .3s var(--ease);border:1px solid rgba(0,245,212,.28);}
+.nav-dot.active{background:var(--cyan);box-shadow:var(--glow-c);transform:scale(1.5);}
+.slide-counter{position:fixed;bottom:clamp(0.6rem,1.5vh,1.2rem);right:clamp(0.8rem,2vw,1.6rem);
+  font-family:'JetBrains Mono',monospace;font-size:var(--mono);color:var(--text-dim);z-index:1000;letter-spacing:.1em;}
+.corner-mark{position:absolute;font-family:'JetBrains Mono',monospace;font-size:var(--mono);color:var(--text-dim);}
+.tl{top:clamp(.7rem,1.5vh,1.2rem);left:clamp(.8rem,2vw,1.6rem);}
+.bl{bottom:clamp(.7rem,1.5vh,1.2rem);left:clamp(.8rem,2vw,1.6rem);}
+.mono-label{font-family:'JetBrains Mono',monospace;font-size:var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);}
+.neon-line{height:1px;background:linear-gradient(90deg,var(--cyan),transparent);}
+.slide-accent-bar{position:absolute;left:0;top:18%;bottom:18%;width:3px;
+  background:linear-gradient(180deg,transparent,var(--cyan),transparent);border-radius:0 2px 2px 0;}
+.feat-tag{display:inline-flex;align-items:center;gap:.4em;font-family:'JetBrains Mono',monospace;
+  font-size:var(--mono);font-weight:700;letter-spacing:.08em;padding:.35em .8em;border-radius:3px;border:1px solid currentColor;}
+.tc{color:var(--cyan);background:rgba(0,245,212,.07);}
+.tm{color:var(--magenta);background:rgba(255,45,120,.07);}
+.ta{color:var(--amber);background:rgba(255,184,48,.07);}
+
+/* === REVEAL === */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.slide.visible .reveal,.slide.visible .reveal-l,.slide.visible .reveal-r{opacity:1;transform:none;}
+.d1{transition-delay:.05s}.d2{transition-delay:.15s}.d3{transition-delay:.25s}
+.d4{transition-delay:.35s}.d5{transition-delay:.45s}.d6{transition-delay:.55s}.d7{transition-delay:.65s}
+
+/* ============================================================
+   PHONE FRAME — universal
+   ============================================================ */
+.phone{
+  width:clamp(150px,20vw,230px);
+  aspect-ratio:9/19.5;
+  background:#111827;
+  border-radius:clamp(24px,3.5vw,40px);
+  padding:clamp(6px,0.9vw,10px);
+  position:relative;
+  box-shadow:0 0 0 1px rgba(255,255,255,.1),0 24px 70px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.05);
+  flex-shrink:0;
+}
+.phone-screen{
+  width:100%;height:100%;border-radius:clamp(18px,2.8vw,32px);
+  background:var(--app-bg);overflow:hidden;position:relative;display:flex;flex-direction:column;
+}
+/* Dynamic Island */
+.phone::before{
+  content:'';position:absolute;top:clamp(8px,1.2vw,13px);left:50%;transform:translateX(-50%);
+  width:clamp(50px,7vw,80px);height:clamp(8px,1.1vw,12px);
+  background:#111827;border-radius:100px;z-index:10;
+}
+/* Status bar */
+.sb{height:clamp(22px,3.2vw,36px);display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 clamp(8px,1.2vw,14px) clamp(3px,0.5vw,5px);font-size:clamp(6px,0.85vw,9px);font-weight:700;
+  color:var(--app-text);flex-shrink:0;}
+/* Tab bar */
+.tab-bar{
+  display:flex;border-top:1px solid rgba(0,0,0,.1);
+  height:clamp(36px,5.2vw,52px);flex-shrink:0;background:#fff;
+}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  font-size:clamp(5px,0.72vw,7.5px);color:var(--app-gray);font-weight:600;}
+.tab.active{color:var(--app-primary);}
+.tab-icon{font-size:clamp(10px,1.4vw,16px);line-height:1;}
+/* Screen content */
+.screen-body{flex:1;overflow:hidden;display:flex;flex-direction:column;}
+/* App header */
+.app-header{
+  padding:clamp(5px,0.8vw,9px) clamp(8px,1.2vw,14px);
+  font-size:clamp(8px,1.1vw,13px);font-weight:700;color:var(--app-text);
+  border-bottom:1px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+
+/* ============================================================
+   PHONE SCREEN: SWIPE
+   ============================================================ */
+.swipe-screen{background:#f0f8f9;}
+.swipe-count{
+  padding:clamp(4px,.6vw,7px) clamp(8px,1.2vw,14px);
+  font-size:clamp(7px,1vw,11px);color:var(--app-gray);font-weight:600;text-align:right;flex-shrink:0;
+}
+.swipe-card-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(4px,.6vw,8px);position:relative;}
+.swipe-card{
+  width:92%;max-height:100%;
+  background:linear-gradient(160deg,#2A93D5 0%,#3DDAD7 100%);
+  border-radius:clamp(12px,1.8vw,18px);
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 8px 24px rgba(0,0,0,.22);
+  position:relative;
+  animation:swipeLoop 5s ease-in-out infinite;
+}
+.swipe-card-img{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(24px,3.6vw,44px);
+  background:linear-gradient(160deg,rgba(255,255,255,.15),rgba(255,255,255,.05));
+}
+.swipe-card-info{
+  background:rgba(255,255,255,.92);
+  padding:clamp(5px,.8vw,9px) clamp(6px,1vw,12px);
+}
+.swipe-card-name{font-size:clamp(7px,1vw,11px);font-weight:700;color:var(--app-text);}
+.swipe-card-cat{font-size:clamp(5px,.78vw,8px);color:var(--app-primary);font-weight:600;margin-top:1px;}
+.swipe-card-addr{font-size:clamp(4.5px,.7vw,7px);color:var(--app-gray);margin-top:1px;}
+/* GOOD badge */
+.good-badge{
+  position:absolute;top:clamp(8px,1.2vw,14px);right:clamp(8px,1.2vw,14px);
+  background:var(--app-good);color:#fff;font-weight:900;
+  font-size:clamp(7px,1vw,12px);padding:.25em .5em;border-radius:4px;
+  border:2px solid #fff;transform:rotate(-12deg);
+  opacity:0;animation:goodBadge 5s ease-in-out infinite;
+}
+.pass-badge{
+  position:absolute;top:clamp(8px,1.2vw,14px);left:clamp(8px,1.2vw,14px);
+  background:var(--app-bad);color:#fff;font-weight:900;
+  font-size:clamp(7px,1vw,12px);padding:.25em .5em;border-radius:4px;
+  border:2px solid #fff;transform:rotate(12deg);
+  opacity:0;
+}
+.swipe-btns{display:flex;justify-content:center;gap:clamp(12px,2vw,24px);padding:clamp(5px,.8vw,10px);flex-shrink:0;}
+.swipe-btn{
+  width:clamp(26px,3.8vw,44px);height:clamp(26px,3.8vw,44px);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:clamp(11px,1.6vw,18px);
+  box-shadow:0 3px 10px rgba(0,0,0,.18);
+}
+.btn-pass{background:#fff;color:var(--app-bad);border:2px solid var(--app-bad);}
+.btn-good{background:var(--app-good);color:#fff;border:2px solid var(--app-good);}
+
+@keyframes swipeLoop{
+  0%,30%{transform:translateX(0) rotate(0);opacity:1;}
+  55%{transform:translateX(clamp(20px,3vw,40px)) rotate(5deg);opacity:.85;}
+  70%{transform:translateX(150%) rotate(18deg);opacity:0;}
+  71%{transform:translateX(-20%) rotate(-3deg);opacity:0;}
+  85%,100%{transform:translateX(0) rotate(0);opacity:1;}
+}
+@keyframes goodBadge{
+  0%,25%{opacity:0;}
+  40%,65%{opacity:1;}
+  70%,100%{opacity:0;}
+}
+
+/* ============================================================
+   PHONE SCREEN: BOOKMARK LIST
+   ============================================================ */
+.bk-tabs{display:flex;border-bottom:1px solid rgba(0,0,0,.1);flex-shrink:0;}
+.bk-tab{flex:1;padding:clamp(4px,.7vw,8px);text-align:center;font-size:clamp(6px,.85vw,9px);font-weight:700;color:var(--app-gray);border-bottom:2px solid transparent;}
+.bk-tab.active{color:var(--app-primary);border-bottom-color:var(--app-primary);}
+.bk-list{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:1px;padding:clamp(3px,.5vw,5px);}
+.bk-item{display:flex;align-items:center;gap:clamp(5px,.8vw,9px);
+  background:#fff;border-radius:8px;
+  padding:clamp(5px,.8vw,8px) clamp(6px,1vw,10px);flex-shrink:0;
+  box-shadow:0 1px 3px rgba(0,0,0,.07);}
+.bk-emoji{font-size:clamp(12px,1.8vw,20px);flex-shrink:0;}
+.bk-info{flex:1;min-width:0;}
+.bk-name{font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:var(--app-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bk-addr{font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);margin-top:1px;}
+.bk-status{font-size:clamp(8px,1.2vw,14px);flex-shrink:0;}
+.bk-filter-row{display:flex;gap:3px;padding:clamp(3px,.5vw,6px);flex-shrink:0;overflow:hidden;}
+.bk-chip{font-size:clamp(5px,.72vw,7px);padding:.2em .5em;border-radius:100px;font-weight:700;background:var(--app-primary);color:#fff;white-space:nowrap;}
+.bk-chip.off{background:#eee;color:var(--app-gray);}
+
+/* ============================================================
+   PHONE SCREEN: MAP
+   ============================================================ */
+.map-screen{background:#e8f4f0;position:relative;}
+.map-bg{flex:1;position:relative;overflow:hidden;}
+/* Simplified map tiles */
+.map-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+  background-size:20px 20px;
+}
+.map-bg::after{content:'';position:absolute;inset:0;background:rgba(232,244,240,.3);}
+/* Roads */
+.map-road-h{position:absolute;left:0;right:0;height:5px;background:rgba(255,255,255,.9);}
+.map-road-v{position:absolute;top:0;bottom:0;width:5px;background:rgba(255,255,255,.9);}
+/* Map pins */
+.map-pin{
+  position:absolute;z-index:5;
+  font-size:clamp(14px,2.1vw,24px);
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));
+  animation:pinDrop .5s var(--ease) both;
+}
+@keyframes pinDrop{from{transform:translateY(-20px) scale(0);opacity:0;}to{transform:none;opacity:1;}}
+/* Map popup card */
+.map-popup{
+  position:absolute;bottom:clamp(4px,.7vw,8px);left:clamp(4px,.7vw,8px);right:clamp(4px,.7vw,8px);
+  background:#fff;border-radius:10px;padding:clamp(5px,.8vw,9px);
+  box-shadow:0 4px 14px rgba(0,0,0,.18);z-index:10;
+  display:flex;gap:clamp(5px,.8vw,8px);align-items:center;
+}
+.map-popup-icon{font-size:clamp(14px,2vw,22px);}
+.map-popup-info{}
+.map-popup-name{font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:var(--app-text);}
+.map-popup-sub{font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);margin-top:1px;}
+.map-popup-btn{
+  margin-left:auto;background:var(--app-primary);color:#fff;border:none;border-radius:5px;
+  font-size:clamp(5px,.72vw,7.5px);font-weight:700;padding:.25em .5em;white-space:nowrap;
+}
+/* Map filter tabs */
+.map-tabs{display:flex;background:rgba(255,255,255,.95);border-radius:100px;margin:clamp(3px,.5vw,5px);
+  box-shadow:0 2px 8px rgba(0,0,0,.12);flex-shrink:0;}
+.map-tab{flex:1;text-align:center;padding:clamp(3px,.5vw,5px);font-size:clamp(5px,.72vw,7.5px);font-weight:700;
+  border-radius:100px;color:var(--app-gray);}
+.map-tab.active{background:var(--app-primary);color:#fff;}
+/* Search bar */
+.map-search{
+  background:#fff;border-radius:8px;margin:clamp(3px,.5vw,5px);
+  padding:clamp(3px,.5vw,5px) clamp(6px,1vw,10px);
+  font-size:clamp(6px,.88vw,9px);color:var(--app-gray);
+  box-shadow:0 2px 6px rgba(0,0,0,.1);display:flex;align-items:center;gap:4px;flex-shrink:0;
+}
+/* Current location btn */
+.map-loc-btn{
+  position:absolute;bottom:clamp(45px,7vw,75px);right:clamp(5px,.8vw,8px);
+  width:clamp(18px,2.8vw,28px);height:clamp(18px,2.8vw,28px);
+  background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);font-size:clamp(8px,1.2vw,14px);z-index:6;
+}
+
+/* ============================================================
+   PHONE SCREEN: IMPORT
+   ============================================================ */
+.import-screen{background:#f8fffe;}
+.import-tabs{display:flex;border-bottom:2px solid rgba(0,0,0,.07);flex-shrink:0;}
+.import-tab{flex:1;padding:clamp(4px,.7vw,7px);text-align:center;font-size:clamp(5.5px,.78vw,8px);font-weight:700;
+  color:var(--app-gray);position:relative;}
+.import-tab.active{color:var(--app-primary);}
+.import-tab.active::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--app-primary);}
+.import-url-area{padding:clamp(5px,.8vw,9px);flex-shrink:0;}
+.import-url-box{
+  background:#fff;border:1px solid var(--app-primary);border-radius:8px;
+  padding:clamp(4px,.7vw,7px) clamp(6px,1vw,10px);
+  font-size:clamp(5.5px,.78vw,8px);color:var(--app-gray);
+}
+.import-url-hint{font-size:clamp(4.5px,.65vw,7px);color:var(--app-primary);margin-top:2px;font-weight:600;}
+.import-result{margin:0 clamp(5px,.8vw,9px);background:#fff;border-radius:10px;
+  box-shadow:0 2px 10px rgba(0,0,0,.1);overflow:hidden;flex-shrink:0;}
+.import-result-header{background:var(--app-primary);color:#fff;padding:clamp(4px,.7vw,7px) clamp(6px,1vw,10px);
+  font-size:clamp(5.5px,.78vw,8px);font-weight:700;}
+.import-place-item{display:flex;align-items:center;gap:clamp(4px,.7vw,8px);
+  padding:clamp(5px,.8vw,8px) clamp(6px,1vw,10px);border-bottom:1px solid rgba(0,0,0,.06);}
+.import-place-num{
+  width:clamp(14px,2vw,20px);height:clamp(14px,2vw,20px);
+  background:var(--app-secondary);color:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:clamp(5px,.72vw,8px);font-weight:700;flex-shrink:0;
+}
+.import-place-info{flex:1;min-width:0;}
+.import-place-name{font-size:clamp(6px,.88vw,9px);font-weight:700;color:var(--app-text);}
+.import-place-addr{font-size:clamp(4.5px,.65vw,7px);color:var(--app-gray);}
+.import-save-btn{
+  margin:clamp(5px,.8vw,9px);background:var(--app-good);color:#fff;border-radius:8px;
+  padding:clamp(5px,.8vw,8px);text-align:center;font-size:clamp(6px,.88vw,10px);font-weight:700;flex-shrink:0;
+}
+
+/* ============================================================
+   PHONE SCREEN: CHECK-IN (CALENDAR)
+   ============================================================ */
+.checkin-screen{background:#fff;}
+.cal-header{
+  background:var(--app-primary);color:#fff;padding:clamp(5px,.8vw,9px);
+  text-align:center;font-size:clamp(7px,1vw,11px);font-weight:700;flex-shrink:0;
+}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;padding:clamp(3px,.5vw,5px);flex-shrink:0;}
+.cal-day-label{text-align:center;font-size:clamp(4.5px,.65vw,7px);color:var(--app-gray);font-weight:700;padding-bottom:2px;}
+.cal-day{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(5px,.72vw,8px);border-radius:50%;cursor:pointer;color:var(--app-text);
+}
+.cal-day.today{background:var(--app-primary);color:#fff;font-weight:700;}
+.cal-day.visited{background:rgba(61,218,215,.2);color:var(--app-primary);font-weight:600;}
+.cal-day.empty{opacity:0;}
+.memo-area{flex:1;padding:clamp(4px,.7vw,8px);}
+.memo-label{font-size:clamp(6px,.88vw,9px);font-weight:700;color:var(--app-text);margin-bottom:3px;}
+.memo-input{
+  width:100%;background:#f5f5f5;border-radius:6px;padding:clamp(4px,.7vw,7px);
+  font-size:clamp(5.5px,.78vw,8px);color:var(--app-gray);border:none;
+  height:clamp(30px,4.5vw,50px);resize:none;
+}
+.checkin-btn{
+  margin:clamp(4px,.7vw,7px);background:var(--app-primary);color:#fff;border-radius:8px;
+  padding:clamp(5px,.8vw,9px);text-align:center;font-size:clamp(6.5px,.95vw,10px);font-weight:700;flex-shrink:0;
+}
+
+/* ============================================================
+   PHONE SCREEN: ALBUM
+   ============================================================ */
+.album-screen{background:#f8f8f8;}
+.album-list-inner{flex:1;padding:clamp(3px,.5vw,6px);display:flex;flex-direction:column;gap:clamp(3px,.5vw,5px);overflow:hidden;}
+.album-row{background:#fff;border-radius:8px;padding:clamp(5px,.8vw,8px) clamp(6px,1vw,10px);
+  display:flex;align-items:center;gap:clamp(5px,.8vw,9px);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.album-thumb-box{
+  width:clamp(28px,4vw,42px);height:clamp(28px,4vw,42px);
+  border-radius:6px;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(14px,2vw,22px);flex-shrink:0;
+}
+.at-a{background:#e0f7f7;}
+.at-b{background:#fff0d4;}
+.at-c{background:#f0e4ff;}
+.album-info-box{flex:1;min-width:0;}
+.album-row-name{font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:var(--app-text);}
+.album-row-sub{font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);margin-top:1px;}
+.album-row-arr{font-size:clamp(8px,1.2vw,14px);color:var(--app-gray);}
+
+/* ============================================================
+   PHONE SCREEN: LOGIN
+   ============================================================ */
+.login-screen{background:#fff;align-items:center;justify-content:center;gap:clamp(6px,1vw,12px);}
+.login-logo{font-size:clamp(22px,3.5vw,42px);font-weight:900;color:var(--app-primary);letter-spacing:-.02em;text-align:center;}
+.login-sub{font-size:clamp(6px,.88vw,9px);color:var(--app-gray);text-align:center;}
+.login-social-btn{
+  width:85%;border-radius:8px;padding:clamp(6px,1vw,10px);
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:clamp(6.5px,.95vw,10px);font-weight:700;
+}
+.btn-google{background:#fff;border:1.5px solid #dadada;color:var(--app-text);}
+.btn-apple{background:#000;color:#fff;}
+.login-divider{font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);}
+
+/* ============================================================
+   PHONE SCREEN: FILTER
+   ============================================================ */
+.filter-screen{background:#f8fffe;}
+.filter-section{padding:clamp(4px,.7vw,8px);flex-shrink:0;}
+.filter-section-label{font-size:clamp(5.5px,.78vw,8px);font-weight:700;color:var(--app-gray);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
+.filter-toggle-row{display:flex;align-items:center;justify-content:space-between;
+  background:#fff;border-radius:8px;padding:clamp(5px,.8vw,8px);box-shadow:0 1px 3px rgba(0,0,0,.07);}
+.filter-toggle-label{font-size:clamp(6.5px,.95vw,10px);font-weight:600;color:var(--app-text);}
+.toggle-pill{width:clamp(22px,3.2vw,32px);height:clamp(12px,1.8vw,18px);
+  background:var(--app-good);border-radius:100px;position:relative;}
+.toggle-dot{position:absolute;right:2px;top:50%;transform:translateY(-50%);
+  width:clamp(8px,1.2vw,14px);height:clamp(8px,1.2vw,14px);
+  background:#fff;border-radius:50%;}
+.filter-chips-row{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px;}
+.fc{font-size:clamp(5px,.72vw,7.5px);padding:.2em .5em;border-radius:100px;font-weight:600;}
+.fc.on{background:var(--app-primary);color:#fff;}
+.fc.off{background:#eee;color:var(--app-gray);}
+.filter-sort-list{display:flex;flex-direction:column;gap:2px;}
+.sort-row{display:flex;align-items:center;gap:5px;padding:clamp(4px,.7vw,7px);
+  background:#fff;border-radius:6px;font-size:clamp(6px,.88vw,9px);color:var(--app-text);}
+.sort-row.active-row{background:rgba(61,218,215,.1);}
+.sort-radio{width:clamp(8px,1.2vw,12px);height:clamp(8px,1.2vw,12px);border-radius:50%;
+  border:1.5px solid var(--app-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sort-radio-dot{width:clamp(4px,.6vw,6px);height:clamp(4px,.6vw,6px);border-radius:50%;background:var(--app-primary);}
+
+/* ============================================================
+   PHONE SCREEN: VISIT MEMO
+   ============================================================ */
+.visit-screen{background:#fff;}
+.visit-header-bar{background:var(--app-primary);color:#fff;padding:clamp(5px,.8vw,9px);font-size:clamp(7px,1vw,11px);font-weight:700;flex-shrink:0;}
+.visit-history{flex:1;padding:clamp(4px,.7vw,8px);display:flex;flex-direction:column;gap:clamp(4px,.7vw,7px);overflow:hidden;}
+.visit-entry{background:#f8f8f8;border-radius:8px;padding:clamp(5px,.8vw,8px);border-left:3px solid var(--app-primary);}
+.visit-date{font-size:clamp(5.5px,.78vw,8px);font-weight:700;color:var(--app-primary);}
+.visit-memo-text{font-size:clamp(5.5px,.78vw,8px);color:var(--app-text);margin-top:2px;line-height:1.4;}
+.visit-photo{font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);margin-top:2px;}
+.visit-album-badge{
+  display:inline-flex;align-items:center;gap:3px;
+  background:rgba(61,218,215,.15);color:var(--app-primary);
+  border-radius:100px;padding:.15em .5em;font-size:clamp(4.5px,.65vw,7px);font-weight:600;margin-top:3px;
+}
+
+/* ============================================================
+   SLIDE 1 — TITLE
+   ============================================================ */
+.slide-1{background:var(--navy);align-items:center;}
+.title-layout{
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  padding:var(--pad);height:100%;gap:var(--gap);position:relative;z-index:2;
+}
+.title-text-col{display:flex;flex-direction:column;gap:var(--gap);}
+.main-logo{font-size:var(--ts);font-weight:900;line-height:.9;letter-spacing:-.03em;}
+.main-logo .c{color:var(--cyan);text-shadow:var(--glow-c);}
+.title-eyebrow{font-family:'JetBrains Mono',monospace;font-size:var(--mono);letter-spacing:.28em;color:var(--cyan);text-transform:uppercase;}
+.title-tagline{font-size:clamp(1rem,2.3vw,1.7rem);font-weight:300;color:var(--text-dim);letter-spacing:.04em;}
+.title-tags{display:flex;flex-wrap:wrap;gap:.5em;}
+.value-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55em;max-width:520px;}
+.value-card{border:1px solid rgba(0,245,212,.18);background:rgba(13,22,48,.72);border-radius:7px;
+  padding:.75em .85em;box-shadow:0 0 22px rgba(0,245,212,.05);}
+.value-num{font-family:'JetBrains Mono',monospace;font-size:var(--mono);font-weight:700;color:var(--cyan);letter-spacing:.08em;}
+.value-copy{font-size:clamp(.66rem,1.1vw,.86rem);line-height:1.45;color:rgba(226,240,248,.72);margin-top:.25em;}
+.title-phone-col{display:flex;justify-content:center;align-items:center;}
+
+/* ============================================================
+   SLIDE LAYOUT — Standard (text left, phone right)
+   ============================================================ */
+.std-layout{
+  display:grid;grid-template-columns:1fr auto;align-items:center;
+  padding:var(--pad);height:100%;gap:clamp(1.5rem,4vw,4rem);position:relative;z-index:2;
+}
+.text-col{display:flex;flex-direction:column;gap:var(--gap);}
+.phone-col{display:flex;gap:clamp(0.8rem,2vw,2rem);align-items:center;justify-content:center;}
+.slide-h2{font-size:var(--h2);font-weight:900;line-height:1.1;}
+.slide-p{font-size:var(--body);color:rgba(226,240,248,.68);line-height:1.65;max-width:460px;}
+.bullet-list{display:flex;flex-direction:column;gap:clamp(.35rem,.9vh,.7rem);}
+.bullet-item{display:flex;align-items:flex-start;gap:.6em;font-size:var(--body);color:rgba(226,240,248,.76);}
+.bullet-item::before{content:'▸';color:var(--cyan);flex-shrink:0;margin-top:.05em;}
+.customer-proof{display:inline-flex;align-items:center;width:max-content;max-width:100%;gap:.45em;
+  padding:.45em .8em;border-radius:100px;background:rgba(0,245,212,.08);
+  border:1px solid rgba(0,245,212,.25);color:rgba(226,240,248,.82);font-size:clamp(.68rem,1.1vw,.86rem);font-weight:700;}
+.customer-proof .mark{color:var(--cyan);font-family:'JetBrains Mono',monospace;}
+
+/* ============================================================
+   SLIDE 11 — SUMMARY GRID
+   ============================================================ */
+.summary-layout{display:flex;flex-direction:column;justify-content:center;padding:var(--pad);height:100%;gap:var(--gap);position:relative;z-index:2;}
+.sum-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.4rem,1vw,.8rem);}
+.sum-card{background:rgba(13,22,48,.7);border:1px solid rgba(0,245,212,.16);border-radius:7px;
+  padding:clamp(.6rem,1.4vh,1.1rem);display:flex;flex-direction:column;gap:.35em;
+  transition:border-color .3s,box-shadow .3s;}
+.sum-card:hover{border-color:rgba(0,245,212,.45);box-shadow:0 0 18px rgba(0,245,212,.07);}
+.sum-icon{font-size:clamp(1.1rem,2vw,1.6rem);}
+.sum-title{font-size:clamp(.7rem,1.3vw,.9rem);font-weight:700;}
+.sum-desc{font-size:clamp(.58rem,.92vw,.72rem);line-height:1.45;color:rgba(226,240,248,.52);}
+
+/* ============================================================
+   SLIDE 12 — CTA
+   ============================================================ */
+.cta-layout{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;height:100%;padding:var(--pad);gap:var(--gap);position:relative;z-index:2;}
+.cta-title{font-size:clamp(2rem,5.5vw,4.2rem);font-weight:900;line-height:1;letter-spacing:-.02em;}
+.cta-title .c{color:var(--cyan);text-shadow:var(--glow-c);}
+.cta-sub{font-size:clamp(.88rem,1.8vw,1.25rem);font-weight:300;color:var(--text-dim);line-height:1.65;max-width:500px;}
+.cta-glow-bar{width:clamp(60px,14vw,160px);height:2px;background:linear-gradient(90deg,var(--magenta),var(--cyan));border-radius:1px;box-shadow:var(--glow-c);}
+.cta-btns{display:flex;gap:1em;flex-wrap:wrap;justify-content:center;}
+.cta-pill{display:flex;align-items:center;gap:.5em;padding:.65em 1.5em;border-radius:100px;font-weight:700;font-size:clamp(.8rem,1.4vw,1rem);}
+.pill-p{background:var(--cyan);color:var(--navy);box-shadow:var(--glow-c);}
+.pill-o{border:1px solid rgba(255,255,255,.22);color:var(--text);}
+
+/* === INLINE EDITING === */
+.edit-hotzone{position:fixed;top:0;left:0;width:80px;height:80px;z-index:10000;cursor:pointer;}
+.edit-toggle{position:fixed;top:16px;left:16px;width:34px;height:34px;border-radius:50%;
+  background:rgba(0,245,212,.15);border:1px solid var(--cyan);color:var(--cyan);font-size:1rem;cursor:pointer;
+  z-index:10001;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+.edit-toggle.show,.edit-toggle.active{opacity:1;pointer-events:auto;}
+.edit-toggle.active{background:var(--cyan);color:var(--navy);}
+.edit-banner{position:fixed;top:0;left:0;right:0;height:3px;
+  background:repeating-linear-gradient(90deg,var(--cyan) 0,var(--cyan) 10px,transparent 10px,transparent 20px);
+  z-index:9999;display:none;}
+.edit-banner.active{display:block;}
+body.edit-active [data-e]{outline:1px dashed rgba(0,245,212,.4);cursor:text;border-radius:2px;}
+body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav-dots" id="navDots"></nav>
+<div class="slide-counter" id="slideCounter">01 / 12</div>
+<div class="edit-hotzone" id="editHotzone"></div>
+<button class="edit-toggle" id="editToggle" title="編集 (E)">✏️</button>
+<div class="edit-banner" id="editBanner"></div>
+
+<!-- ========== SLIDE 01: TITLE ========== -->
+<section class="slide slide-1">
+  <div class="slide-bg"></div>
+  <div class="title-layout">
+    <div class="title-text-col">
+      <div class="title-eyebrow reveal d1">Bookmark Driven Experience</div>
+      <div class="main-logo reveal d2">BOM<span class="c">DE</span></div>
+      <div class="neon-line reveal d3" style="max-width:180px;"></div>
+      <div class="title-tagline reveal d4" data-e>SNSで見つけた「行きたい」を、今日行ける地図に。</div>
+      <div class="title-tags reveal d5">
+        <span class="feat-tag tc">行きたいを逃さない</span>
+        <span class="feat-tag tm">今行ける場所が見つかる</span>
+        <span class="feat-tag ta">思い出まで残せる</span>
+      </div>
+      <div class="value-strip reveal d6">
+        <div class="value-card">
+          <div class="value-num">01 COLLECT</div>
+          <div class="value-copy" data-e>SNS・Googleマップの保存先をBOMDEに集約。</div>
+        </div>
+        <div class="value-card">
+          <div class="value-num">02 DECIDE</div>
+          <div class="value-copy" data-e>地図・営業中・カテゴリで、今の候補をすぐ選べる。</div>
+        </div>
+        <div class="value-card">
+          <div class="value-num">03 REMEMBER</div>
+          <div class="value-copy" data-e>訪問メモと写真が、次の外出や旅行の資産になる。</div>
+        </div>
+      </div>
+    </div>
+    <!-- Phone: swipe screen -->
+    <div class="title-phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen swipe-screen">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header"><span data-e>探索</span><span style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray)">残り 24件</span></div>
+          <div class="screen-body">
+            <div class="swipe-card-wrap">
+              <div class="swipe-card">
+                <div class="swipe-card-img">☕</div>
+                <div class="swipe-card-info">
+                  <div class="swipe-card-name" data-e>猿田彦珈琲 代官山店</div>
+                  <div class="swipe-card-cat">カフェ · ¥¥</div>
+                  <div class="swipe-card-addr">渋谷区代官山町20-15</div>
+                </div>
+                <div class="good-badge">GOOD ♥</div>
+              </div>
+            </div>
+            <div class="swipe-btns">
+              <div class="swipe-btn btn-pass">✕</div>
+              <div class="swipe-btn btn-good">♥</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab active"><div class="tab-icon">🔍</div>探索</div>
+            <div class="tab"><div class="tab-icon">🔖</div>保存</div>
+            <div class="tab"><div class="tab-icon">🗺️</div>マップ</div>
+            <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="corner-mark bl mono-label">BOMDE App</div>
+</section>
+
+<!-- ========== SLIDE 02: LOGIN ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 01 — LOGIN</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">START FAST</div>
+      <h2 class="slide-h2 reveal d2" data-e>登録で止まらず、<br>すぐ使い始められる</h2>
+      <p class="slide-p reveal d3" data-e>GoogleまたはApple IDでワンタップ開始。面倒な入力を減らし、見つけた場所を整理する体験まで最短で進めます。</p>
+      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>初回のハードルを下げ、継続利用につなげる導線。</span></div>
+      <div class="bullet-list reveal d5">
+        <div class="bullet-item" data-e>普段使うアカウントで迷わずサインアップ</div>
+        <div class="bullet-item" data-e>次回から自動ログインで、開いた瞬間に使える</div>
+        <div class="bullet-item" data-e>メール登録にも対応し、利用者の選択肢を確保</div>
+      </div>
+    </div>
+    <!-- Phone: login screen -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen login-screen" style="display:flex;flex-direction:column;gap:clamp(8px,1.2vw,14px);">
+          <div class="sb" style="width:100%;"><span>9:41</span><span>●●● 100%</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,1.2vw,14px);padding:clamp(8px,1.2vw,14px);">
+            <div class="login-logo">BOMDE</div>
+            <div class="login-sub" data-e>行きたい場所を、今日の目的地に</div>
+            <div style="width:100%;display:flex;flex-direction:column;gap:clamp(5px,.8vw,9px);align-items:center;">
+              <div class="login-social-btn btn-google">
+                <span>🔵</span><span>Googleでログイン</span>
+              </div>
+              <div class="login-social-btn btn-apple">
+                <span>🍎</span><span>Appleでログイン</span>
+              </div>
+            </div>
+            <div class="login-divider">または</div>
+            <div style="font-size:clamp(5.5px,.78vw,8px);color:var(--app-primary);font-weight:600;">メールアドレスで登録</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 03: IMPORT ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 02 — IMPORT</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">SAVE WITHOUT COPYWORK</div>
+      <h2 class="slide-h2 reveal d2" data-e>SNSで見つけたお店を、<br>忘れる前に保存</h2>
+      <p class="slide-p reveal d3" data-e>投稿URLを貼り付けるだけで、キャプションや位置情報から場所候補を抽出。気になった瞬間の熱量を、そのままブックマークに変えられます。</p>
+      <div class="bullet-list reveal d4">
+        <div class="bullet-item" data-e>まとめ投稿の複数スポットも一括保存</div>
+        <div class="bullet-item" data-e>既存のGoogleマップ保存データも取り込める</div>
+        <div class="bullet-item" data-e>カテゴリ自動判定で、保存後すぐ地図で探せる</div>
+      </div>
+    </div>
+    <!-- Phone: import screen -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen import-screen">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">SNSインポート</div>
+          <div class="screen-body">
+            <div class="import-tabs">
+              <div class="import-tab active">📸 Instagram</div>
+              <div class="import-tab">🎵 TikTok</div>
+              <div class="import-tab">🗺️ Gマップ</div>
+            </div>
+            <div class="import-url-area">
+              <div class="import-url-box">https://www.instagram.com/p/C...</div>
+              <div class="import-url-hint">▸ 場所を解析中...</div>
+            </div>
+            <div class="import-result">
+              <div class="import-result-header">📍 3件の場所が見つかりました</div>
+              <div class="import-place-item">
+                <div class="import-place-num">1</div>
+                <div class="import-place-info">
+                  <div class="import-place-name">猿田彦珈琲 代官山</div>
+                  <div class="import-place-addr">渋谷区代官山町20-15</div>
+                </div>
+              </div>
+              <div class="import-place-item">
+                <div class="import-place-num">2</div>
+                <div class="import-place-info">
+                  <div class="import-place-name">蔦屋書店</div>
+                  <div class="import-place-addr">渋谷区代官山町17-5</div>
+                </div>
+              </div>
+              <div class="import-place-item">
+                <div class="import-place-num">3</div>
+                <div class="import-place-info">
+                  <div class="import-place-name">Log Road Daikanyama</div>
+                  <div class="import-place-addr">渋谷区代官山町13-1</div>
+                </div>
+              </div>
+            </div>
+            <div class="import-save-btn">3件をまとめて保存</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 04: BOOKMARKS ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 03 — BOOKMARKS</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">ORGANIZE INTENT</div>
+      <h2 class="slide-h2 reveal d2" data-e>「行きたい」が、<br>行動できるリストになる</h2>
+      <p class="slide-p reveal d3" data-e>保存した場所を「行きたい」「行った」「お気に入り」で整理。候補探しから訪問後の振り返りまで、場所との関係をひとつの流れで管理できます。</p>
+      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>ただの保存リストではなく、次の外出につながる場所台帳。</span></div>
+      <div class="bullet-list reveal d5">
+        <div class="bullet-item" data-e>行く前の候補、訪問済み、リピートしたい場所を分けて管理</div>
+        <div class="bullet-item" data-e>すべての追加経路が同じリストに集まり、探し直しが不要</div>
+        <div class="bullet-item" data-e>不要な候補はすぐ削除、気になる場所は詳細で確認</div>
+        <div class="bullet-item" data-e>訪問後はメモ・写真つきの記録へ自然に移行</div>
+      </div>
+    </div>
+    <!-- Phone: bookmark list -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">ブックマーク<span style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray)">12件</span></div>
+          <div class="screen-body">
+            <div class="bk-tabs">
+              <div class="bk-tab active">♥ 行きたい (8)</div>
+              <div class="bk-tab">✓ 行った (4)</div>
+            </div>
+            <div class="bk-filter-row">
+              <div class="bk-chip">営業中</div>
+              <div class="bk-chip off">カフェ</div>
+              <div class="bk-chip off">東京</div>
+            </div>
+            <div class="bk-list">
+              <div class="bk-item">
+                <div class="bk-emoji">☕</div>
+                <div class="bk-info">
+                  <div class="bk-name">猿田彦珈琲 代官山</div>
+                  <div class="bk-addr">渋谷区代官山町</div>
+                </div>
+                <div class="bk-status">♥</div>
+              </div>
+              <div class="bk-item">
+                <div class="bk-emoji">🍜</div>
+                <div class="bk-info">
+                  <div class="bk-name">麺屋武蔵 新宿</div>
+                  <div class="bk-addr">新宿区西新宿</div>
+                </div>
+                <div class="bk-status">♥</div>
+              </div>
+              <div class="bk-item">
+                <div class="bk-emoji">🍣</div>
+                <div class="bk-info">
+                  <div class="bk-name">すし屋の磯松</div>
+                  <div class="bk-addr">港区六本木</div>
+                </div>
+                <div class="bk-status">♥</div>
+              </div>
+              <div class="bk-item">
+                <div class="bk-emoji">🍰</div>
+                <div class="bk-info">
+                  <div class="bk-name">Pierre Hermé Paris</div>
+                  <div class="bk-addr">渋谷区神宮前</div>
+                </div>
+                <div class="bk-status">♥</div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab"><div class="tab-icon">🔍</div>探索</div>
+            <div class="tab active"><div class="tab-icon">🔖</div>保存</div>
+            <div class="tab"><div class="tab-icon">🗺️</div>マップ</div>
+            <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 05: MAP ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 04 — MAP</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">SEE NEARBY OPTIONS</div>
+      <h2 class="slide-h2 reveal d2" data-e>近くの「行きたい」が、<br>地図で見える</h2>
+      <p class="slide-p reveal d3" data-e>ブックマークを地図上に可視化。現在地や目的地の周辺で候補を見つけやすくなり、「あとで行こう」をその日の行動に変えられます。</p>
+      <div class="bullet-list reveal d4">
+        <div class="bullet-item" data-e>カテゴリ別アイコンで、カフェ・食事・観光を直感的に把握</div>
+        <div class="bullet-item" data-e>マップ検索から新しい場所をそのままブックマーク</div>
+        <div class="bullet-item" data-e>現在地にすぐ戻れるので、外出中でも迷わない</div>
+        <div class="bullet-item" data-e>行きたい / 行った / お気に入りを切り替えて表示</div>
+      </div>
+    </div>
+    <!-- Phone: map screen -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen map-screen" style="display:flex;flex-direction:column;">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="map-search">🔍 <span style="color:var(--app-gray)">場所を検索...</span></div>
+          <div class="map-tabs">
+            <div class="map-tab active">♥ 行きたい</div>
+            <div class="map-tab">✓ 行った</div>
+            <div class="map-tab">★ お気に入り</div>
+          </div>
+          <div class="map-bg" style="flex:1;position:relative;">
+            <div class="map-road-h" style="top:30%;"></div>
+            <div class="map-road-h" style="top:60%;"></div>
+            <div class="map-road-v" style="left:35%;"></div>
+            <div class="map-road-v" style="left:65%;"></div>
+            <div class="map-pin" style="top:22%;left:28%;animation-delay:.1s;">☕</div>
+            <div class="map-pin" style="top:40%;left:58%;animation-delay:.25s;">🍜</div>
+            <div class="map-pin" style="top:15%;left:60%;animation-delay:.4s;">🍣</div>
+            <div class="map-pin" style="top:55%;left:25%;animation-delay:.55s;">🍰</div>
+            <div class="map-pin" style="top:35%;left:40%;animation-delay:.7s;">🍺</div>
+            <div class="map-loc-btn">📍</div>
+            <div class="map-popup">
+              <div class="map-popup-icon">☕</div>
+              <div class="map-popup-info">
+                <div class="map-popup-name">猿田彦珈琲 代官山</div>
+                <div class="map-popup-sub">カフェ · 営業中 · 渋谷区</div>
+              </div>
+              <div class="map-popup-btn">詳細</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab"><div class="tab-icon">🔍</div>探索</div>
+            <div class="tab"><div class="tab-icon">🔖</div>保存</div>
+            <div class="tab active"><div class="tab-icon">🗺️</div>マップ</div>
+            <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 06: FILTER ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 05 — FILTER</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">CHOOSE RIGHT NOW</div>
+      <h2 class="slide-h2 reveal d2" data-e>今行ける場所だけを、<br>すばやく絞り込む</h2>
+      <p class="slide-p reveal d3" data-e>営業中・カテゴリ・エリア・価格帯を組み合わせて、今の気分に合う候補だけに集中。大量の保存リストから探すストレスを減らします。</p>
+      <div class="bullet-list reveal d4">
+        <div class="bullet-item" data-e>営業中のみ表示で、閉店中の候補を先に除外</div>
+        <div class="bullet-item" data-e>カテゴリ・都道府県・価格帯でシーンに合わせて絞り込み</div>
+        <div class="bullet-item" data-e>訪問日や訪問回数で、再訪候補も見つけやすい</div>
+      </div>
+    </div>
+    <!-- Phone: filter screen -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen filter-screen">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">絞り込み・並べ替え</div>
+          <div class="screen-body" style="overflow:hidden;padding-bottom:4px;">
+            <div class="filter-section">
+              <div class="filter-section-label">営業状況</div>
+              <div class="filter-toggle-row">
+                <div class="filter-toggle-label" data-e>営業中のみ表示</div>
+                <div class="toggle-pill"><div class="toggle-dot"></div></div>
+              </div>
+            </div>
+            <div class="filter-section">
+              <div class="filter-section-label">カテゴリ</div>
+              <div class="filter-chips-row">
+                <div class="fc on">カフェ</div>
+                <div class="fc off">ラーメン</div>
+                <div class="fc off">イタリアン</div>
+                <div class="fc on">スイーツ</div>
+                <div class="fc off">バー</div>
+                <div class="fc off">焼肉</div>
+              </div>
+            </div>
+            <div class="filter-section">
+              <div class="filter-section-label" style="margin-bottom:3px;">並べ替え</div>
+              <div class="filter-sort-list">
+                <div class="sort-row active-row">
+                  <div class="sort-radio"><div class="sort-radio-dot"></div></div>
+                  <span>新着順</span>
+                </div>
+                <div class="sort-row">
+                  <div class="sort-radio"></div>
+                  <span>訪問日（新しい順）</span>
+                </div>
+                <div class="sort-row">
+                  <div class="sort-radio"></div>
+                  <span>訪問回数</span>
+                </div>
+                <div class="sort-row">
+                  <div class="sort-radio"></div>
+                  <span>名前順</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 07: CATEGORY ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 06 — CATEGORY</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">KEEP IT CLEAN</div>
+      <h2 class="slide-h2 reveal d2" data-e>分類がきれいだから、<br>あとで探しやすい</h2>
+      <p class="slide-p reveal d3" data-e>保存時にカテゴリを自動提案し、必要に応じて手動で調整。地図上の見え方までそろうので、保存が増えても埋もれません。</p>
+      <div class="bullet-list reveal d4">
+        <div class="bullet-item" data-e>飲食・観光・買い物など幅広いカテゴリに対応</div>
+        <div class="bullet-item" data-e>自動分類が違っても、その場ですぐ修正できる</div>
+        <div class="bullet-item" data-e>カテゴリ変更はマップアイコンにもすぐ反映</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4em;margin-top:.3em;" class="reveal d5">
+        <span class="feat-tag tc">飲食 21種</span>
+        <span class="feat-tag tm">お酒・夜 3種</span>
+        <span class="feat-tag ta">文化・観光 4種</span>
+      </div>
+    </div>
+    <!-- Phone: category change modal -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen" style="background:#fff;">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">カテゴリを変更</div>
+          <div class="screen-body" style="overflow:hidden;">
+            <!-- Currently selected -->
+            <div style="padding:clamp(4px,.7vw,7px) clamp(6px,1vw,10px);background:rgba(61,218,215,.08);border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0;">
+              <div style="font-size:clamp(5.5px,.78vw,8px);color:var(--app-gray);">現在のカテゴリ</div>
+              <div style="font-size:clamp(7px,1vw,11px);font-weight:700;color:var(--app-primary);margin-top:1px;">☕ カフェ</div>
+            </div>
+            <!-- Category grid -->
+            <div style="padding:clamp(3px,.5vw,5px);display:grid;grid-template-columns:repeat(3,1fr);gap:2px;overflow:hidden;">
+              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:rgba(61,218,215,.12);border:1.5px solid var(--app-primary);">
+                <div style="font-size:clamp(12px,1.8vw,20px);">☕</div>
+                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:700;color:var(--app-primary);margin-top:1px;">カフェ</div>
+              </div>
+              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
+                <div style="font-size:clamp(12px,1.8vw,20px);">🍜</div>
+                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">ラーメン</div>
+              </div>
+              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
+                <div style="font-size:clamp(12px,1.8vw,20px);">🍣</div>
+                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">寿司・海鮮</div>
+              </div>
+              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
+                <div style="font-size:clamp(12px,1.8vw,20px);">🍕</div>
+                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">イタリアン</div>
+              </div>
+              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
+                <div style="font-size:clamp(12px,1.8vw,20px);">🥩</div>
+                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">焼肉・BBQ</div>
+              </div>
+              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
+                <div style="font-size:clamp(12px,1.8vw,20px);">🍰</div>
+                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">スイーツ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 08: CHECK-IN ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 07 — CHECK-IN</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">TURN VISITS INTO MEMORY</div>
+      <h2 class="slide-h2 reveal d2" data-e>行った場所を、<br>忘れない記録に変える</h2>
+      <p class="slide-p reveal d3" data-e>訪問した日、感じたこと、写真をまとめてチェックイン。良かった理由まで残るので、再訪や友人への共有にも使いやすくなります。</p>
+      <div class="bullet-list reveal d4">
+        <div class="bullet-item" data-e>カレンダーで訪問日を選び、同じ日の重複記録を防止</div>
+        <div class="bullet-item" data-e>その訪問だけのメモを残せるから、印象が混ざらない</div>
+        <div class="bullet-item" data-e>写真と一緒に保存して、記憶を見返しやすい</div>
+        <div class="bullet-item" data-e>訪問回数・最終訪問日を自動で更新</div>
+      </div>
+      <div style="margin-top:.3em;" class="reveal d5">
+        <span class="feat-tag tc">マップから直接</span>&ensp;<span class="feat-tag tm">ブックマーク詳細から</span>
+      </div>
+    </div>
+    <!-- Phone: check-in calendar -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen checkin-screen">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="cal-header">訪問日を選択 — 2025年11月</div>
+          <div class="cal-grid">
+            <div class="cal-day-label">日</div><div class="cal-day-label">月</div><div class="cal-day-label">火</div>
+            <div class="cal-day-label">水</div><div class="cal-day-label">木</div><div class="cal-day-label">金</div><div class="cal-day-label">土</div>
+            <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
+            <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day">1</div><div class="cal-day">2</div>
+            <div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div>
+            <div class="cal-day visited">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div>
+            <div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div>
+            <div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day today">15</div><div class="cal-day">16</div>
+          </div>
+          <div class="memo-area">
+            <div class="memo-label">メモ（任意）</div>
+            <textarea class="memo-input" readonly>友人と来店。牡蠣のパスタが絶品。次は夜に来たい！</textarea>
+          </div>
+          <div style="padding:0 clamp(5px,.8vw,9px);flex-shrink:0;">
+            <div style="font-size:clamp(5.5px,.78vw,8px);color:var(--app-gray);margin-bottom:3px;">📷 写真を追加（任意）</div>
+            <div style="display:flex;gap:3px;">
+              <div style="width:clamp(22px,3.2vw,32px);height:clamp(22px,3.2vw,32px);border-radius:4px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:clamp(10px,1.5vw,16px);">+</div>
+            </div>
+          </div>
+          <div class="checkin-btn">✓ チェックインする</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 09: VISIT MEMO + ALBUM ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 08 — MEMO & ALBUM</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">RECALL THE DETAILS</div>
+      <h2 class="slide-h2 reveal d2" data-e>何度行っても、<br>体験を分けて残せる</h2>
+      <p class="slide-p reveal d3" data-e>同じ場所に複数回訪問しても、日付ごとのメモと写真を個別に保存。前回何を頼んだか、誰と行ったかまで自然に振り返れます。</p>
+      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>リピートするほど、自分だけの場所履歴が濃くなる。</span></div>
+      <div class="bullet-list reveal d5">
+        <div class="bullet-item" data-e>訪問日・メモ・写真をひとつの体験として記録</div>
+        <div class="bullet-item" data-e>アルバム上でも最近のメモが見える</div>
+        <div class="bullet-item" data-e>再訪候補を選ぶときに、過去の満足ポイントを確認できる</div>
+      </div>
+    </div>
+    <!-- Two phones side by side -->
+    <div class="phone-col reveal-r d3" style="gap:clamp(0.5rem,1.2vw,1rem);">
+      <!-- Phone A: visit history with memo -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen visit-screen">
+          <div class="sb"><span>9:41</span><span>●●●</span></div>
+          <div class="visit-header-bar">訪問履歴 — 猿田彦珈琲</div>
+          <div class="screen-body">
+            <div class="visit-history">
+              <div class="visit-entry">
+                <div class="visit-date">2025.11.15（土）</div>
+                <div class="visit-memo-text" data-e>友人と来店。牡蠣のパスタが絶品！</div>
+                <div class="visit-photo">📷 写真 3枚</div>
+              </div>
+              <div class="visit-entry">
+                <div class="visit-date">2025.10.02（木）</div>
+                <div class="visit-memo-text" data-e>ランチ。アボカドトーストが◎</div>
+                <div class="visit-photo">📷 写真 1枚</div>
+              </div>
+              <div class="visit-entry">
+                <div class="visit-date">2025.08.20（水）</div>
+                <div class="visit-memo-text" data-e>初訪問。雰囲気最高。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Phone B: album showing the memo -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen album-screen">
+          <div class="sb"><span>9:41</span><span>●●●</span></div>
+          <div class="app-header" style="background:var(--app-primary);color:#fff;">☕ イタリアン旅</div>
+          <div class="screen-body">
+            <div class="album-list-inner">
+              <div class="album-row">
+                <div class="album-thumb-box at-a">☕</div>
+                <div class="album-info-box">
+                  <div class="album-row-name">猿田彦珈琲 代官山</div>
+                  <div class="album-row-sub">3回訪問 · 最終 2025.11</div>
+                  <div class="visit-album-badge">📝 友人と来店。牡蠣のパスタが...</div>
+                </div>
+              </div>
+              <div class="album-row">
+                <div class="album-thumb-box at-b">🍕</div>
+                <div class="album-info-box">
+                  <div class="album-row-name">Savoy 元麻布</div>
+                  <div class="album-row-sub">1回訪問 · 2025.10</div>
+                  <div class="visit-album-badge">📝 マルゲリータが最高</div>
+                </div>
+              </div>
+              <div class="album-row">
+                <div class="album-thumb-box at-c">🍝</div>
+                <div class="album-info-box">
+                  <div class="album-row-name">Il Ristorante</div>
+                  <div class="album-row-sub">2回訪問 · 2025.09</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 10: ALBUM ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 09 — ALBUM</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">CURATE YOUR PLACES</div>
+      <h2 class="slide-h2 reveal d2" data-e>旅も日常も、<br>テーマ別に振り返れる</h2>
+      <p class="slide-p reveal d3" data-e>訪問済みの場所を「京都旅行」「お気に入りカフェ」など自由なアルバムに整理。単なる記録ではなく、また見返したくなるコレクションになります。</p>
+      <div class="bullet-list reveal d4">
+        <div class="bullet-item" data-e>旅行・デート・友人との食事など、用途別に整理</div>
+        <div class="bullet-item" data-e>訪問写真・メモがまとまり、思い出を追いやすい</div>
+        <div class="bullet-item" data-e>チェックイン後にアルバム追加を促し、整理漏れを防ぐ</div>
+        <div class="bullet-item" data-e>アルバムから外してもブックマークは残るので安心</div>
+      </div>
+    </div>
+    <!-- Phone: album list -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen album-screen">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">アルバム<span style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray)">3件</span></div>
+          <div class="screen-body">
+            <div class="album-list-inner">
+              <div class="album-row">
+                <div class="album-thumb-box at-a">🍝</div>
+                <div class="album-info-box">
+                  <div class="album-row-name" data-e>イタリアン旅</div>
+                  <div class="album-row-sub">8か所 · 最終訪問 2025.11</div>
+                </div>
+                <div class="album-row-arr">›</div>
+              </div>
+              <div class="album-row">
+                <div class="album-thumb-box at-b">☕</div>
+                <div class="album-info-box">
+                  <div class="album-row-name" data-e>お気に入りカフェ</div>
+                  <div class="album-row-sub">12か所 · 最終訪問 2025.12</div>
+                </div>
+                <div class="album-row-arr">›</div>
+              </div>
+              <div class="album-row">
+                <div class="album-thumb-box at-c">🗾</div>
+                <div class="album-info-box">
+                  <div class="album-row-name" data-e>京都旅行 2025</div>
+                  <div class="album-row-sub">6か所 · 最終訪問 2025.10</div>
+                </div>
+                <div class="album-row-arr">›</div>
+              </div>
+              <div style="margin-top:4px;background:rgba(61,218,215,.08);border:1.5px dashed rgba(61,218,215,.4);border-radius:8px;padding:clamp(6px,1vw,10px);text-align:center;color:var(--app-primary);font-size:clamp(6px,.88vw,9px);font-weight:700;">
+                ＋ 新しいアルバムを作成
+              </div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab"><div class="tab-icon">🔍</div>探索</div>
+            <div class="tab"><div class="tab-icon">🔖</div>保存</div>
+            <div class="tab"><div class="tab-icon">🗺️</div>マップ</div>
+            <div class="tab active"><div class="tab-icon">👤</div>アカウント</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 11: SUMMARY ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="corner-mark tl mono-label">// FEATURES</div>
+  <div class="summary-layout">
+    <div class="mono-label reveal d1">VALUE SUMMARY</div>
+    <h2 style="font-size:var(--h2);font-weight:900;line-height:1.1;" class="reveal d2" data-e>BOMDEが解決すること</h2>
+    <div class="sum-grid">
+      <div class="sum-card reveal d3"><div class="sum-icon">🔵</div><div class="sum-title" data-e>すぐ始められる</div><div class="sum-desc" data-e>面倒な登録を短縮し、保存体験へ直行。</div></div>
+      <div class="sum-card reveal d3"><div class="sum-icon">📸</div><div class="sum-title" data-e>SNSの行きたいを保存</div><div class="sum-desc" data-e>Instagram投稿から場所候補を抽出。</div></div>
+      <div class="sum-card reveal d3"><div class="sum-icon">🎵</div><div class="sum-title" data-e>動画で見た店も残せる</div><div class="sum-desc" data-e>TikTokの発見をあとで探せる場所へ。</div></div>
+      <div class="sum-card reveal d3"><div class="sum-icon">🗺️</div><div class="sum-title" data-e>既存保存も活かせる</div><div class="sum-desc" data-e>Googleマップの保存データも集約。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">🎨</div><div class="sum-title" data-e>地図で見分けやすい</div><div class="sum-desc" data-e>カテゴリ別アイコンで候補を直感把握。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">♥ ✓ ★</div><div class="sum-title" data-e>状態で整理できる</div><div class="sum-desc" data-e>行く前・行った後・お気に入りを分離。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">📍</div><div class="sum-title" data-e>訪問を記録できる</div><div class="sum-desc" data-e>日付・メモ・写真で体験を残す。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">📂</div><div class="sum-title" data-e>思い出をまとめられる</div><div class="sum-desc" data-e>旅行やテーマごとのアルバムに整理。</div></div>
+      <div class="sum-card reveal d5"><div class="sum-icon">🟢</div><div class="sum-title" data-e>今行ける店がわかる</div><div class="sum-desc" data-e>営業中だけに絞って候補選びを短縮。</div></div>
+      <div class="sum-card reveal d5"><div class="sum-icon">🔽</div><div class="sum-title" data-e>大量保存でも迷わない</div><div class="sum-desc" data-e>カテゴリ・地域・価格帯で整理。</div></div>
+      <div class="sum-card reveal d5"><div class="sum-icon">🔍</div><div class="sum-title" data-e>その場で追加できる</div><div class="sum-desc" data-e>地図検索から直接ブックマーク。</div></div>
+      <div class="sum-card reveal d5"><div class="sum-icon">🏷️</div><div class="sum-title" data-e>あとから直せる</div><div class="sum-desc" data-e>カテゴリを調整し、見つけやすさを維持。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 12: CTA ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="cta-layout">
+    <div class="mono-label reveal d1" style="letter-spacing:.3em;">BOMDE</div>
+    <div class="cta-title reveal d2">行きたい場所を、<br><span class="c">行ける体験へ</span></div>
+    <div class="cta-glow-bar reveal d3"></div>
+    <div class="cta-sub reveal d4" data-e>保存して終わりだったブックマークを、探せる地図・選べる候補・見返せる思い出に。BOMDEは、発見から訪問後までをつなぐ場所管理アプリです。</div>
+    <div class="cta-btns reveal d5">
+      <div class="cta-pill pill-p">BOMDEを試す</div>
+      <div class="cta-pill pill-o">機能をもう一度見る</div>
+    </div>
+    <div class="title-tags reveal d6">
+      <span class="feat-tag tc">iOS</span>
+      <span class="feat-tag tc">Android</span>
+      <span class="feat-tag tm">無料で開始</span>
+    </div>
+  </div>
+</section>
+
+<script>
+class SlidePresentation {
+  constructor() {
+    this.slides = Array.from(document.querySelectorAll('.slide'));
+    this.total = this.slides.length;
+    this.current = 0;
+    this.pb = document.getElementById('progressBar');
+    this.counter = document.getElementById('slideCounter');
+    this.dotsEl = document.getElementById('navDots');
+    this.buildDots();
+    this.observe();
+    this.keyboard();
+    this.touch();
+    this.wheel();
+    this.updateUI(0);
+  }
+  buildDots() {
+    this.dotsEl.innerHTML = '';
+    this.slides.forEach((_,i) => {
+      const d = document.createElement('button');
+      d.className = 'nav-dot'; d.setAttribute('aria-label', `${i+1}`);
+      d.onclick = () => this.goTo(i);
+      this.dotsEl.appendChild(d);
+    });
+  }
+  observe() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); this.updateUI(this.slides.indexOf(e.target)); }
+      });
+    }, {threshold: 0.5});
+    this.slides.forEach(s => io.observe(s));
+  }
+  updateUI(i) {
+    this.current = i;
+    this.pb.style.transform = `scaleX(${this.total > 1 ? i/(this.total-1) : 1})`;
+    this.counter.textContent = `${String(i+1).padStart(2,'0')} / ${String(this.total).padStart(2,'0')}`;
+    document.querySelectorAll('.nav-dot').forEach((d,j) => d.classList.toggle('active', j===i));
+  }
+  goTo(i) { this.slides[Math.max(0,Math.min(this.total-1,i))].scrollIntoView({behavior:'smooth'}); }
+  goNext() { this.goTo(this.current+1); } goPrev() { this.goTo(this.current-1); }
+  keyboard() {
+    document.addEventListener('keydown', e => {
+      if (e.target.getAttribute('contenteditable')) return;
+      if (['ArrowDown','ArrowRight','PageDown'].includes(e.key)||e.code==='Space') { e.preventDefault(); this.goNext(); }
+      else if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); this.goPrev(); }
+      else if (e.key==='Home') { e.preventDefault(); this.goTo(0); }
+      else if (e.key==='End') { e.preventDefault(); this.goTo(this.total-1); }
+    });
+  }
+  touch() {
+    let sy=0, sx=0;
+    document.addEventListener('touchstart', e => { sy=e.touches[0].clientY; sx=e.touches[0].clientX; }, {passive:true});
+    document.addEventListener('touchend', e => {
+      const dy=sy-e.changedTouches[0].clientY, dx=sx-e.changedTouches[0].clientX;
+      if (Math.abs(dy)>Math.abs(dx)&&Math.abs(dy)>40) dy>0?this.goNext():this.goPrev();
+    }, {passive:true});
+  }
+  wheel() {
+    let last=0;
+    document.addEventListener('wheel', e => {
+      const now=Date.now(); if(now-last<800)return; last=now;
+      e.deltaY>0?this.goNext():this.goPrev();
+    }, {passive:true});
+  }
+}
+
+class InlineEditor {
+  constructor() {
+    this.active = false;
+    this.toggle = document.getElementById('editToggle');
+    this.hotzone = document.getElementById('editHotzone');
+    this.banner = document.getElementById('editBanner');
+    this.hideT = null;
+    const show = () => { clearTimeout(this.hideT); this.toggle.classList.add('show'); };
+    const hide = () => { this.hideT = setTimeout(() => { if (!this.active) this.toggle.classList.remove('show'); }, 400); };
+    this.hotzone.addEventListener('mouseenter', show); this.hotzone.addEventListener('mouseleave', hide);
+    this.toggle.addEventListener('mouseenter', show); this.toggle.addEventListener('mouseleave', hide);
+    this.hotzone.addEventListener('click', () => this.toggle());
+    this.toggle.addEventListener('click', () => this.toggleMode());
+    document.addEventListener('keydown', e => {
+      if ((e.key==='e'||e.key==='E')&&!e.target.getAttribute('contenteditable')) this.toggleMode();
+      if (e.ctrlKey&&e.key==='s'&&this.active) { e.preventDefault(); this.export(); }
+    });
+  }
+  toggleMode() {
+    this.active = !this.active;
+    document.body.classList.toggle('edit-active', this.active);
+    this.toggle.classList.toggle('active', this.active);
+    this.toggle.classList.add('show');
+    this.banner.classList.toggle('active', this.active);
+    this.toggle.textContent = this.active ? '✓' : '✏️';
+    document.querySelectorAll('[data-e]').forEach(el => {
+      this.active ? el.setAttribute('contenteditable','true') : el.removeAttribute('contenteditable');
+    });
+  }
+  export() {
+    const els = Array.from(document.querySelectorAll('[contenteditable]'));
+    els.forEach(el => el.removeAttribute('contenteditable'));
+    document.body.classList.remove('edit-active');
+    this.toggle.classList.remove('active','show');
+    this.banner.classList.remove('active');
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    document.body.classList.add('edit-active');
+    els.forEach(el => el.setAttribute('contenteditable','true'));
+    this.toggle.classList.add('active','show');
+    this.banner.classList.add('active');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([html],{type:'text/html'}));
+    a.download = 'bomde-features.html'; a.click(); URL.revokeObjectURL(a.href);
+  }
+}
+
+new SlidePresentation();
+new InlineEditor();
+</script>
+</body>
+</html>
