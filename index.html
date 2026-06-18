@@ -245,7 +245,7 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
   display:flex;gap:clamp(5px,.8vw,8px);align-items:center;
 }
 .map-popup-icon{font-size:clamp(14px,2vw,22px);}
-.map-popup-info{}
+.map-popup-info { flex: 1; }
 .map-popup-name{font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:var(--app-text);}
 .map-popup-sub{font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);margin-top:1px;}
 .map-popup-btn{
@@ -484,40 +484,28 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
 
 /* ===== RESPONSIVE: スマートフォン対応 ===== */
 @media (max-width: 768px) {
-  /* スライドの高さをコンテンツ量に応じて可変に */
-  .slide {
-    height: auto;
-    min-height: 100dvh;
-    overflow: visible;
-  }
-  .slide-content {
-    max-height: none;
-    overflow: visible;
+  /* std-layout: 2列維持（テキスト左・フォン右）、余白縮小 */
+  .std-layout {
+    padding: clamp(2.8rem, 9vh, 4rem) clamp(0.75rem, 3vw, 1.2rem) clamp(0.6rem, 2vh, 1rem);
+    gap: clamp(0.5rem, 1.5vw, 0.8rem);
   }
 
-  /* 標準レイアウト・タイトルレイアウト → 縦1列 */
-  .std-layout,
+  /* タイトルスライドのみ縦1列（内容量が多いため） */
   .title-layout {
     grid-template-columns: 1fr;
     align-items: start;
-    padding-top: clamp(2.8rem, 9vh, 4.5rem);
-    gap: var(--gap);
+    padding: clamp(2.8rem, 9vh, 4rem) clamp(0.75rem, 3vw, 1.2rem) clamp(0.6rem, 2vh, 1rem);
   }
+  .title-phone-col { justify-content: center; }
 
-  /* フォン列を中央寄せ */
-  .phone-col,
-  .title-phone-col {
-    justify-content: center;
-    padding-bottom: clamp(1.2rem, 4vh, 2.5rem);
-  }
+  /* フォン: 画面幅の33%（110〜145px）*/
+  .phone { width: clamp(110px, 33vw, 145px); }
 
-  /* フォン幅: 画面幅の44%（150px〜210px） */
-  .phone {
-    width: clamp(150px, 44vw, 210px);
-  }
+  /* 説明段落・プルーフバッジ: 非表示（h2・箇条書きを優先） */
+  .slide-p, .customer-proof { display: none; }
 
-  /* テキスト幅制限を解除 */
-  .slide-p { max-width: 100%; }
+  /* 箇条書き間隔を縮小 */
+  .bullet-list { gap: clamp(0.2rem, 0.6vh, 0.45rem); }
 
   /* バリューストリップ: 1列 */
   .value-strip { grid-template-columns: 1fr; max-width: 100%; }
@@ -525,14 +513,11 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
   /* サマリーグリッド: 4列→2列 */
   .sum-grid { grid-template-columns: repeat(2, 1fr); }
 
-  /* ナビドット: スワイプ操作があるため非表示 */
-  .nav-dots { display: none; }
-
-  /* 左縦ラインはモバイルでは非表示 */
-  .slide-accent-bar { display: none; }
+  /* ナビドット・アクセントバー非表示 */
+  .nav-dots, .slide-accent-bar { display: none; }
 
   /* スライドカウンター位置調整 */
-  .slide-counter { bottom: clamp(0.4rem, 1.5vh, 0.8rem); right: clamp(0.6rem, 2vw, 1rem); }
+  .slide-counter { bottom: 0.4rem; right: 0.6rem; }
 }
 
 
