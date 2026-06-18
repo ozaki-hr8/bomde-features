@@ -459,7 +459,7 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
    SLIDE 11 — SUMMARY GRID
    ============================================================ */
 .summary-layout{display:flex;flex-direction:column;justify-content:center;padding:var(--pad);height:100%;gap:var(--gap);position:relative;z-index:2;}
-.sum-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.4rem,1vw,.8rem);}
+.sum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.4rem,1vw,.8rem);}
 .sum-card{background:rgba(13,22,48,.7);border:1px solid rgba(0,245,212,.16);border-radius:7px;
   padding:clamp(.6rem,1.4vh,1.1rem);display:flex;flex-direction:column;gap:.35em;
   transition:border-color .3s,box-shadow .3s;}
@@ -540,7 +540,7 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
 
 <div class="progress-bar" id="progressBar"></div>
 <nav class="nav-dots" id="navDots"></nav>
-<div class="slide-counter" id="slideCounter">01 / 12</div>
+<div class="slide-counter" id="slideCounter">01 / 13</div>
 <div class="edit-hotzone" id="editHotzone"></div>
 <button class="edit-toggle" id="editToggle" title="編集 (E)">✏️</button>
 <div class="edit-banner" id="editBanner"></div>
@@ -1194,10 +1194,10 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
   </div>
 </section>
 
-<!-- ========== SLIDE 11: SUMMARY ========== -->
+<!-- ========== SLIDE 11a: SUMMARY (集める・管理する) ========== -->
 <section class="slide">
   <div class="slide-bg"></div>
-  <div class="corner-mark tl mono-label">// FEATURES</div>
+  <div class="corner-mark tl mono-label">// FEATURES 1/2</div>
   <div class="summary-layout">
     <div class="mono-label reveal d1">VALUE SUMMARY</div>
     <h2 style="font-size:var(--h2);font-weight:900;line-height:1.1;" class="reveal d2" data-e>BOMDEが解決すること</h2>
@@ -1205,15 +1205,27 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
       <div class="sum-card reveal d3"><div class="sum-icon">🔵</div><div class="sum-title" data-e>すぐ始められる</div><div class="sum-desc" data-e>面倒な登録を短縮し、保存体験へ直行。</div></div>
       <div class="sum-card reveal d3"><div class="sum-icon">📸</div><div class="sum-title" data-e>SNSの行きたいを保存</div><div class="sum-desc" data-e>Instagram投稿から場所候補を抽出。</div></div>
       <div class="sum-card reveal d3"><div class="sum-icon">🎵</div><div class="sum-title" data-e>動画で見た店も残せる</div><div class="sum-desc" data-e>TikTokの発見をあとで探せる場所へ。</div></div>
-      <div class="sum-card reveal d3"><div class="sum-icon">🗺️</div><div class="sum-title" data-e>既存保存も活かせる</div><div class="sum-desc" data-e>Googleマップの保存データも集約。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">🗺️</div><div class="sum-title" data-e>既存保存も活かせる</div><div class="sum-desc" data-e>Googleマップの保存データも集約。</div></div>
       <div class="sum-card reveal d4"><div class="sum-icon">🎨</div><div class="sum-title" data-e>地図で見分けやすい</div><div class="sum-desc" data-e>カテゴリ別アイコンで候補を直感把握。</div></div>
       <div class="sum-card reveal d4"><div class="sum-icon">♥ ✓ ★</div><div class="sum-title" data-e>状態で整理できる</div><div class="sum-desc" data-e>行く前・行った後・お気に入りを分離。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 11b: SUMMARY (行動する・残す) ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="corner-mark tl mono-label">// FEATURES 2/2</div>
+  <div class="summary-layout">
+    <div class="mono-label reveal d1">VALUE SUMMARY</div>
+    <h2 style="font-size:var(--h2);font-weight:900;line-height:1.1;" class="reveal d2" data-e>BOMDEが解決すること</h2>
+    <div class="sum-grid">
+      <div class="sum-card reveal d3"><div class="sum-icon">🟢</div><div class="sum-title" data-e>今行ける店がわかる</div><div class="sum-desc" data-e>営業中だけに絞って候補選びを短縮。</div></div>
+      <div class="sum-card reveal d3"><div class="sum-icon">🔽</div><div class="sum-title" data-e>大量保存でも迷わない</div><div class="sum-desc" data-e>カテゴリ・地域・価格帯で整理。</div></div>
+      <div class="sum-card reveal d3"><div class="sum-icon">🔍</div><div class="sum-title" data-e>その場で追加できる</div><div class="sum-desc" data-e>地図検索から直接ブックマーク。</div></div>
       <div class="sum-card reveal d4"><div class="sum-icon">📍</div><div class="sum-title" data-e>訪問を記録できる</div><div class="sum-desc" data-e>日付・メモ・写真で体験を残す。</div></div>
       <div class="sum-card reveal d4"><div class="sum-icon">📂</div><div class="sum-title" data-e>思い出をまとめられる</div><div class="sum-desc" data-e>旅行やテーマごとのアルバムに整理。</div></div>
-      <div class="sum-card reveal d5"><div class="sum-icon">🟢</div><div class="sum-title" data-e>今行ける店がわかる</div><div class="sum-desc" data-e>営業中だけに絞って候補選びを短縮。</div></div>
-      <div class="sum-card reveal d5"><div class="sum-icon">🔽</div><div class="sum-title" data-e>大量保存でも迷わない</div><div class="sum-desc" data-e>カテゴリ・地域・価格帯で整理。</div></div>
-      <div class="sum-card reveal d5"><div class="sum-icon">🔍</div><div class="sum-title" data-e>その場で追加できる</div><div class="sum-desc" data-e>地図検索から直接ブックマーク。</div></div>
-      <div class="sum-card reveal d5"><div class="sum-icon">🏷️</div><div class="sum-title" data-e>あとから直せる</div><div class="sum-desc" data-e>カテゴリを調整し、見つけやすさを維持。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">🏷️</div><div class="sum-title" data-e>あとから直せる</div><div class="sum-desc" data-e>カテゴリを調整し、見つけやすさを維持。</div></div>
     </div>
   </div>
 </section>
