@@ -482,6 +482,67 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
 .pill-p{background:var(--cyan);color:var(--navy);box-shadow:var(--glow-c);}
 .pill-o{border:1px solid rgba(255,255,255,.22);color:var(--text);}
 
+/* ===== RESPONSIVE: スマートフォン対応 ===== */
+@media (max-width: 768px) {
+  /* スライドの高さをコンテンツ量に応じて可変に */
+  .slide {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+  .slide-content {
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* 標準レイアウト・タイトルレイアウト → 縦1列 */
+  .std-layout,
+  .title-layout {
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding-top: clamp(2.8rem, 9vh, 4.5rem);
+    gap: var(--gap);
+  }
+
+  /* フォン列を中央寄せ */
+  .phone-col,
+  .title-phone-col {
+    justify-content: center;
+    padding-bottom: clamp(1.2rem, 4vh, 2.5rem);
+  }
+
+  /* フォン幅: 画面幅の44%（150px〜210px） */
+  .phone {
+    width: clamp(150px, 44vw, 210px);
+  }
+
+  /* テキスト幅制限を解除 */
+  .slide-p { max-width: 100%; }
+
+  /* バリューストリップ: 1列 */
+  .value-strip { grid-template-columns: 1fr; max-width: 100%; }
+
+  /* サマリーグリッド: 4列→2列 */
+  .sum-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ナビドット: スワイプ操作があるため非表示 */
+  .nav-dots { display: none; }
+
+  /* 左縦ラインはモバイルでは非表示 */
+  .slide-accent-bar { display: none; }
+
+  /* スライドカウンター位置調整 */
+  .slide-counter { bottom: clamp(0.4rem, 1.5vh, 0.8rem); right: clamp(0.6rem, 2vw, 1rem); }
+}
+
+@media (max-width: 400px) {
+  /* 極小画面: フォンを非表示にしてテキストに集中 */
+  .phone-col,
+  .title-phone-col {
+    display: none;
+  }
+}
+
 /* === INLINE EDITING === */
 .edit-hotzone{position:fixed;top:0;left:0;width:80px;height:80px;z-index:10000;cursor:pointer;}
 .edit-toggle{position:fixed;top:16px;left:16px;width:34px;height:34px;border-radius:50%;
