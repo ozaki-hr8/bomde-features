@@ -462,8 +462,9 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
 .sum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.4rem,1vw,.8rem);}
 .sum-card{background:rgba(13,22,48,.7);border:1px solid rgba(0,245,212,.16);border-radius:7px;
   padding:clamp(.6rem,1.4vh,1.1rem);display:flex;flex-direction:column;gap:.35em;
-  transition:border-color .3s,box-shadow .3s;}
+  transition:border-color .3s,box-shadow .3s;cursor:pointer;}
 .sum-card:hover{border-color:rgba(0,245,212,.45);box-shadow:0 0 18px rgba(0,245,212,.07);}
+.sum-num{font-family:'JetBrains Mono',monospace;font-size:clamp(.48rem,.7vw,.62rem);color:var(--accent);opacity:.6;line-height:1;align-self:flex-end;}
 .sum-icon{font-size:clamp(1.1rem,2vw,1.6rem);}
 .sum-title{font-size:clamp(.7rem,1.3vw,.9rem);font-weight:700;}
 .sum-desc{font-size:clamp(.58rem,.92vw,.72rem);line-height:1.45;color:rgba(226,240,248,.52);}
@@ -983,7 +984,7 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
 <section class="slide">
   <div class="slide-bg"></div>
   <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 06 — CHECK-IN</div>
+  <div class="corner-mark tl mono-label">// 05 — CHECK-IN</div>
   <div class="std-layout">
     <div class="text-col">
       <div class="mono-label reveal d1">TURN VISITS INTO MEMORY</div>
@@ -1058,7 +1059,7 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
 <section class="slide">
   <div class="slide-bg"></div>
   <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 07 — ALBUM</div>
+  <div class="corner-mark tl mono-label">// 06 — ALBUM</div>
   <div class="std-layout">
     <div class="text-col">
       <div class="mono-label reveal d1">CONTEXTUAL ALBUMS</div>
@@ -1154,7 +1155,7 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
 <section class="slide">
   <div class="slide-bg"></div>
   <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// AUTO CHECK-IN</div>
+  <div class="corner-mark tl mono-label">// 07 — AUTO CHECK-IN</div>
   <div class="std-layout">
     <div class="text-col">
       <div class="mono-label reveal d1">AUTO CHECK-IN REMINDER</div>
@@ -1497,15 +1498,16 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
     <div class="mono-label reveal d1">VALUE SUMMARY</div>
     <h2 style="font-size:var(--h2);font-weight:900;line-height:1.1;" class="reveal d2" data-e>BOMDEでできること</h2>
     <div class="sum-grid">
-      <div class="sum-card reveal d3"><div class="sum-icon">📸</div><div class="sum-title" data-e>どこからでも集められる</div><div class="sum-desc" data-e>SNS・TikTok・Googleマップ・マップ検索など複数の経路から保存。</div></div>
-      <div class="sum-card reveal d3"><div class="sum-icon">💡</div><div class="sum-title" data-e>きっかけまで残せる</div><div class="sum-desc" data-e>保存元の投稿に戻れるので、なぜ気になったかまで思い出せる。</div></div>
-      <div class="sum-card reveal d3"><div class="sum-icon">🗺️</div><div class="sum-title" data-e>地図で一目でわかる</div><div class="sum-desc" data-e>48カテゴリのアイコンで、お店・スポット・イベントを直感把握。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">🟢</div><div class="sum-title" data-e>今日行ける場所が見つかる</div><div class="sum-desc" data-e>営業中・イベント・ブックマーク通知で行き先を逃さない。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">🔔</div><div class="sum-title" data-e>記録し忘れない</div><div class="sum-desc" data-e>滞在検知で自動チェックインを提案。偶然の訪問も残せる。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">📋</div><div class="sum-title" data-e>一覧で迷わず探せる</div><div class="sum-desc" data-e>絞り込み・並べ替えで、保存が増えても目的の場所をすぐ発見。</div></div>
-      <div class="sum-card reveal d5"><div class="sum-icon">📰</div><div class="sum-title" data-e>雑誌感覚で発見できる</div><div class="sum-desc" data-e>東京イベントやユーザー投稿をスワイプで閲覧・即ブックマーク。</div></div>
-      <div class="sum-card reveal d5"><div class="sum-icon">✏️</div><div class="sum-title" data-e>投稿・自分用記録も作れる</div><div class="sum-desc" data-e>魅力的な投稿を数ステップで作成。非公開の記録用としても使える。</div></div>
-      <div class="sum-card reveal d5"><div class="sum-icon">📂</div><div class="sum-title" data-e>テーマ別に振り返れる</div><div class="sum-desc" data-e>旅行・デート・日常など、文脈ごとのアルバムでまた見返したくなる記録に。</div></div>
+      <div class="sum-card reveal d3" onclick="document.querySelectorAll('.slide')[1].scrollIntoView({behavior:'smooth'})"><div class="sum-num">01</div><div class="sum-icon">📸</div><div class="sum-title" data-e>どこからでも集められる</div><div class="sum-desc" data-e>SNS・TikTok・Googleマップ・マップ検索など複数の経路から保存。</div></div>
+      <div class="sum-card reveal d3" onclick="document.querySelectorAll('.slide')[2].scrollIntoView({behavior:'smooth'})"><div class="sum-num">02</div><div class="sum-icon">🗺️</div><div class="sum-title" data-e>地図で一目でわかる</div><div class="sum-desc" data-e>48カテゴリのアイコンで、お店・スポット・イベントを直感把握。</div></div>
+      <div class="sum-card reveal d3" onclick="document.querySelectorAll('.slide')[3].scrollIntoView({behavior:'smooth'})"><div class="sum-num">03</div><div class="sum-icon">🟢</div><div class="sum-title" data-e>今日行ける場所が見つかる</div><div class="sum-desc" data-e>営業中・イベント・ブックマーク通知で行き先を逃さない。</div></div>
+      <div class="sum-card reveal d4" onclick="document.querySelectorAll('.slide')[4].scrollIntoView({behavior:'smooth'})"><div class="sum-num">04</div><div class="sum-icon">💡</div><div class="sum-title" data-e>きっかけまで残せる</div><div class="sum-desc" data-e>保存元の投稿に戻れるので、なぜ気になったかまで思い出せる。</div></div>
+      <div class="sum-card reveal d4" onclick="document.querySelectorAll('.slide')[5].scrollIntoView({behavior:'smooth'})"><div class="sum-num">05</div><div class="sum-icon">✍️</div><div class="sum-title" data-e>訪問を、残したい記録に</div><div class="sum-desc" data-e>訪問日・メモ・写真をまとめて、その日の体験として記録。</div></div>
+      <div class="sum-card reveal d4" onclick="document.querySelectorAll('.slide')[6].scrollIntoView({behavior:'smooth'})"><div class="sum-num">06</div><div class="sum-icon">📂</div><div class="sum-title" data-e>テーマ別に振り返れる</div><div class="sum-desc" data-e>旅行・デート・日常など、文脈ごとのアルバムでまた見返したくなる記録に。</div></div>
+      <div class="sum-card reveal d5" onclick="document.querySelectorAll('.slide')[7].scrollIntoView({behavior:'smooth'})"><div class="sum-num">07</div><div class="sum-icon">🔔</div><div class="sum-title" data-e>記録し忘れない</div><div class="sum-desc" data-e>滞在検知で自動チェックインを提案。偶然の訪問も残せる。</div></div>
+      <div class="sum-card reveal d5" onclick="document.querySelectorAll('.slide')[8].scrollIntoView({behavior:'smooth'})"><div class="sum-num">08</div><div class="sum-icon">📋</div><div class="sum-title" data-e>一覧で迷わず探せる</div><div class="sum-desc" data-e>絞り込み・並べ替えで、保存が増えても目的の場所をすぐ発見。</div></div>
+      <div class="sum-card reveal d5" onclick="document.querySelectorAll('.slide')[9].scrollIntoView({behavior:'smooth'})"><div class="sum-num">09</div><div class="sum-icon">📰</div><div class="sum-title" data-e>雑誌感覚で発見できる</div><div class="sum-desc" data-e>東京イベントやユーザー投稿をスワイプで閲覧・即ブックマーク。</div></div>
+      <div class="sum-card reveal d6" onclick="document.querySelectorAll('.slide')[10].scrollIntoView({behavior:'smooth'})"><div class="sum-num">10</div><div class="sum-icon">✏️</div><div class="sum-title" data-e>投稿・自分用記録も作れる</div><div class="sum-desc" data-e>魅力的な投稿を数ステップで作成。非公開の記録用としても使える。</div></div>
     </div>
   </div>
 </section>
