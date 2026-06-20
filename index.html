@@ -670,7 +670,7 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
 <section class="slide">
   <div class="slide-bg"></div>
   <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 01 — IMPORT</div>
+  <div class="corner-mark tl mono-label">// 01 — BOOKMARK / IMPORT</div>
   <div class="std-layout">
     <div class="text-col">
       <div class="mono-label reveal d1">COLLECT FROM ANYWHERE</div>
@@ -681,6 +681,7 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
         <div class="bullet-item" data-e>既存のGoogleマップ保存データも取り込める</div>
         <div class="bullet-item" data-e>カテゴリ自動判定で、保存後すぐ地図で探せる</div>
         <div class="bullet-item" data-e>BOMDE上のマップ検索からも、そのままインポート可能</div>
+        <div class="bullet-item" data-e>一度ブックマークした場所でも、別のSNS投稿やBOMDE投稿を同じブックマークに追加可能</div>
       </div>
     </div>
     <!-- Phone: import screen -->
@@ -735,7 +736,7 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
 <section class="slide">
   <div class="slide-bg"></div>
   <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 02 — MAP</div>
+  <div class="corner-mark tl mono-label">// 02 — ICON MAP</div>
   <div class="std-layout">
     <div class="text-col">
       <div class="mono-label reveal d1">SEE BY CATEGORY</div>
@@ -800,36 +801,35 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
 <section class="slide">
   <div class="slide-bg"></div>
   <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 03 — FILTER</div>
+  <div class="corner-mark tl mono-label">// 03 — DISCOVER</div>
   <div class="std-layout">
     <div class="text-col">
       <div class="mono-label reveal d1">OPEN THE MAP, REMEMBER YOUR INTERESTS</div>
       <h2 class="slide-h2 reveal d2" data-e>近くの「行きたい」が、<br>今日のきっかけになる</h2>
-      <p class="slide-p reveal d3" data-e>特に行き先が決まっていない日でも、BOMDEを開けば、近くで開催中のイベントや営業中のお店が見つかります。自分が保存した興味を地図上で思い出せるから、「ちょっと行ってみよう」が自然に生まれます。</p>
+      <p class="slide-p reveal d3" data-e>特に行き先が決まっていない日でも、BOMDEを開けば、近くで開催中のイベントや営業中のお店が見つかります。さらに、ブックマークした場所の近くに来たときは通知でお知らせ。自分が保存した興味をその場で思い出せるから、「ちょっと行ってみよう」が自然に生まれます。</p>
       <div class="bullet-list reveal d4">
         <div class="bullet-item" data-e>営業中のお店や開催中のイベントを、今行ける候補としてすぐに確認</div>
         <div class="bullet-item" data-e>カテゴリ・エリア・価格帯を組み合わせて、その日の気分に合う場所を見つけやすく</div>
+        <div class="bullet-item" data-e>ブックマークした場所の近くに来たら通知でお知らせし、気になっていた場所を逃さない</div>
       </div>
     </div>
-    <!-- Phone: lively event map -->
-    <div class="phone-col reveal-r d3">
-      <div class="phone">
+    <!-- Two phones: event map + notification -->
+    <div class="phone-col reveal-r d3" style="gap:clamp(0.5rem,1.2vw,1rem);">
+      <!-- Phone A: lively event map -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
         <div class="phone-screen map-screen" style="display:flex;flex-direction:column;">
           <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
-          <!-- Filter chips -->
           <div class="map-filter-chips">
             <div class="mfc on">🎪 イベント</div>
             <div class="mfc on">🟢 営業中</div>
             <div class="mfc off">☕ カフェ</div>
             <div class="mfc off">🍜 グルメ</div>
           </div>
-          <!-- Map -->
           <div class="map-bg" style="flex:1;position:relative;">
             <div class="map-road-h" style="top:38%;"></div>
             <div class="map-road-h" style="top:68%;"></div>
             <div class="map-road-v" style="left:32%;"></div>
             <div class="map-road-v" style="left:64%;"></div>
-            <!-- Event pins with 開催中 badge -->
             <div class="event-pin-wrap" style="top:18%;left:44%;">
               <div class="map-pin" style="animation-delay:.1s;">🎪</div>
               <div class="event-badge">開催中!</div>
@@ -838,20 +838,16 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
               <div class="map-pin" style="animation-delay:.5s;">🎵</div>
               <div class="event-badge">開催中!</div>
             </div>
-            <!-- Regular pins -->
             <div class="map-pin" style="top:12%;left:18%;animation-delay:.2s;">☕</div>
             <div class="map-pin" style="top:26%;left:72%;animation-delay:.35s;">🍰</div>
             <div class="map-pin" style="top:56%;left:66%;animation-delay:.65s;">🍜</div>
             <div class="map-pin" style="top:72%;left:42%;animation-delay:.8s;">🍺</div>
-            <!-- Current location -->
             <div class="cur-loc-wrap" style="top:40%;left:50%;">
               <div class="cur-loc-pulse"></div>
               <div class="cur-loc-pulse" style="animation-delay:.7s;opacity:.5;"></div>
               <div class="cur-loc-dot"></div>
             </div>
-            <!-- Location button -->
             <div class="map-loc-btn">📍</div>
-            <!-- Event popup -->
             <div class="map-popup">
               <div class="map-popup-icon">🎪</div>
               <div class="map-popup-info">
@@ -867,6 +863,42 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
             <div class="tab active"><div class="tab-icon">🗺️</div>マップ</div>
             <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
           </div>
+        </div>
+      </div>
+      <!-- Phone B: iOS lock screen notification -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen" style="background:linear-gradient(160deg,#1a2a4a 0%,#0d1630 60%,#0a1020 100%);display:flex;flex-direction:column;align-items:center;overflow:hidden;">
+          <!-- Status bar (white on dark) -->
+          <div class="sb" style="color:#fff;width:100%;padding-bottom:clamp(2px,.3vw,4px);">
+            <span>9:41</span><span>●●● 100%</span>
+          </div>
+          <!-- Lock screen time -->
+          <div style="margin-top:clamp(8px,1.3vw,16px);text-align:center;">
+            <div style="font-size:clamp(22px,3.5vw,44px);font-weight:200;color:#fff;letter-spacing:-.02em;line-height:1;">9:41</div>
+            <div style="font-size:clamp(6px,.9vw,10px);color:rgba(255,255,255,.6);margin-top:2px;">土曜日 11月15日</div>
+          </div>
+          <!-- Notification card -->
+          <div style="width:88%;margin-top:clamp(10px,1.6vw,20px);background:rgba(255,255,255,.18);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:clamp(10px,1.5vw,16px);border:1px solid rgba(255,255,255,.22);overflow:hidden;">
+            <!-- Notification header -->
+            <div style="display:flex;align-items:center;gap:clamp(4px,.6vw,7px);padding:clamp(5px,.8vw,9px) clamp(6px,1vw,10px) clamp(3px,.4vw,5px);">
+              <div style="width:clamp(14px,2vw,20px);height:clamp(14px,2vw,20px);border-radius:4px;background:var(--app-primary);display:flex;align-items:center;justify-content:center;font-size:clamp(7px,1vw,11px);flex-shrink:0;">📍</div>
+              <div style="font-size:clamp(5.5px,.78vw,8px);font-weight:700;color:rgba(255,255,255,.9);">BOMDE</div>
+              <div style="font-size:clamp(4.5px,.65vw,7px);color:rgba(255,255,255,.45);margin-left:auto;">たった今</div>
+            </div>
+            <!-- Notification body -->
+            <div style="padding:0 clamp(6px,1vw,10px) clamp(6px,1vw,10px);">
+              <div style="font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:#fff;line-height:1.3;">📍 猿田彦珈琲 代官山の近くにいます</div>
+              <div style="font-size:clamp(5px,.72vw,7.5px);color:rgba(255,255,255,.65);margin-top:clamp(2px,.3vw,4px);line-height:1.4;">ブックマークした場所まで徒歩3分。今日行ってみませんか？</div>
+            </div>
+            <!-- Quick actions -->
+            <div style="border-top:1px solid rgba(255,255,255,.15);display:flex;">
+              <div style="flex:1;padding:clamp(4px,.6vw,7px);text-align:center;font-size:clamp(5px,.72vw,7.5px);font-weight:600;color:var(--app-primary);">地図で見る</div>
+              <div style="width:1px;background:rgba(255,255,255,.15);"></div>
+              <div style="flex:1;padding:clamp(4px,.6vw,7px);text-align:center;font-size:clamp(5px,.72vw,7.5px);font-weight:600;color:rgba(255,255,255,.55);">後で</div>
+            </div>
+          </div>
+          <!-- Lock icon -->
+          <div style="margin-top:auto;margin-bottom:clamp(10px,1.6vw,18px);font-size:clamp(16px,2.4vw,28px);opacity:.4;">🔒</div>
         </div>
       </div>
     </div>
@@ -1118,11 +1150,116 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
 </section>
 
 
+<!-- ========== SLIDE: AUTO CHECK-IN ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// AUTO CHECK-IN</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">AUTO CHECK-IN REMINDER</div>
+      <h2 class="slide-h2 reveal d2" data-e>行った場所を、<br>記録し忘れない</h2>
+      <p class="slide-p reveal d3" data-e>BOMDEは、一定時間同じ場所に滞在したことを検知すると、近くのスポット候補を通知します。ブックマークしていない場所でも、あとから「行った」を残すきっかけになるので、日常の外出や偶然立ち寄った場所も記録し忘れません。</p>
+      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>訪問した場所を、思い出した時ではなく、その場で記録できる。</span></div>
+      <div class="bullet-list reveal d5">
+        <div class="bullet-item" data-e>一定時間同じエリアに滞在すると、近くのスポット候補を通知</div>
+        <div class="bullet-item" data-e>通知をタップして「この場所に行きましたか？」からチェックイン確認</div>
+        <div class="bullet-item" data-e>ビルや商業施設では、テナント候補から実際に訪れた場所を選択</div>
+        <div class="bullet-item" data-e>通知時間帯や除外ゾーンを設定し、自宅・職場など不要な通知を抑制</div>
+      </div>
+    </div>
+    <!-- Two phones: lock screen notification + tenant selection -->
+    <div class="phone-col reveal-r d3" style="gap:clamp(0.5rem,1.2vw,1rem);">
+      <!-- Phone A: iOS lock screen with visit notification -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen" style="background:linear-gradient(160deg,#5c3a1e 0%,#8b5e3c 30%,#c4874a 60%,#e8a96b 100%);display:flex;flex-direction:column;overflow:hidden;">
+          <!-- Status bar -->
+          <div class="sb" style="color:#fff;width:100%;">
+            <span style="font-size:clamp(5px,.72vw,7.5px);">docomo</span>
+            <span>📶 4G 🔋</span>
+          </div>
+          <!-- Date -->
+          <div style="text-align:center;margin-top:clamp(6px,1vw,12px);">
+            <div style="font-size:clamp(6px,.88vw,9px);color:rgba(255,255,255,.8);font-weight:500;">6月5日（金）</div>
+            <div style="font-size:clamp(28px,4.5vw,54px);font-weight:100;color:#fff;letter-spacing:-.03em;line-height:1.05;">19:51</div>
+          </div>
+          <!-- Spacer -->
+          <div style="flex:1;"></div>
+          <!-- Notification banner (bottom) -->
+          <div style="margin:clamp(5px,.8vw,9px);background:rgba(255,255,255,.22);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:clamp(10px,1.5vw,14px);border:1px solid rgba(255,255,255,.3);overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:clamp(4px,.6vw,7px);padding:clamp(5px,.8vw,9px) clamp(6px,1vw,10px);">
+              <!-- App icon -->
+              <div style="width:clamp(18px,2.6vw,28px);height:clamp(18px,2.6vw,28px);border-radius:clamp(4px,.6vw,7px);background:var(--app-primary);display:flex;align-items:center;justify-content:center;font-size:clamp(9px,1.3vw,15px);flex-shrink:0;">📍</div>
+              <div style="flex:1;min-width:0;">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                  <div style="font-size:clamp(5.5px,.78vw,8px);font-weight:700;color:rgba(255,255,255,.9);">訪問チェックイン</div>
+                  <div style="font-size:clamp(4px,.58vw,6px);color:rgba(255,255,255,.5);flex-shrink:0;">11分前</div>
+                </div>
+                <div style="font-size:clamp(5.5px,.78vw,8px);color:rgba(255,255,255,.8);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">巨牛荘 六本木店に行きましたか？</div>
+              </div>
+            </div>
+          </div>
+          <!-- Bottom area -->
+          <div style="text-align:center;padding-bottom:clamp(6px,1vw,12px);">
+            <div style="font-size:clamp(16px,2.4vw,28px);opacity:.5;">🔒</div>
+          </div>
+        </div>
+      </div>
+      <!-- Phone B: tenant selection / check-in confirmation -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen" style="background:#f8fffe;">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">
+            <span>訪問チェックイン</span>
+            <span style="font-size:clamp(8px,1.2vw,14px);color:var(--app-gray);">✕</span>
+          </div>
+          <div class="screen-body" style="padding:clamp(5px,.8vw,9px);display:flex;flex-direction:column;gap:clamp(4px,.6vw,7px);overflow:hidden;">
+            <!-- Location info -->
+            <div style="background:rgba(61,218,215,.08);border:1px solid rgba(61,218,215,.25);border-radius:8px;padding:clamp(5px,.8vw,8px);text-align:center;">
+              <div style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-primary);font-weight:700;">📍 六本木ヒルズ付近 · 約20分滞在</div>
+              <div style="font-size:clamp(5.5px,.78vw,8px);font-weight:700;color:var(--app-text);margin-top:2px;">どのお店に行きましたか？</div>
+            </div>
+            <!-- Tenant list -->
+            <div style="display:flex;flex-direction:column;gap:clamp(3px,.5vw,5px);">
+              <!-- Highlighted candidate -->
+              <div style="background:#fff;border:2px solid var(--app-primary);border-radius:8px;padding:clamp(5px,.8vw,8px) clamp(6px,1vw,10px);display:flex;align-items:center;gap:clamp(4px,.7vw,8px);">
+                <div style="font-size:clamp(14px,2vw,20px);">🥩</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:var(--app-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">巨牛荘 六本木店</div>
+                  <div style="font-size:clamp(4.5px,.65vw,7px);color:var(--app-gray);">焼肉 · 徒歩1分</div>
+                </div>
+                <div style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-primary);font-weight:700;">選択</div>
+              </div>
+              <div style="background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:clamp(5px,.8vw,8px) clamp(6px,1vw,10px);display:flex;align-items:center;gap:clamp(4px,.7vw,8px);">
+                <div style="font-size:clamp(14px,2vw,20px);">🌃</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:var(--app-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">六本木ヒルズ展望台</div>
+                  <div style="font-size:clamp(4.5px,.65vw,7px);color:var(--app-gray);">観光・展望台</div>
+                </div>
+              </div>
+              <div style="background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:clamp(5px,.8vw,8px) clamp(6px,1vw,10px);display:flex;align-items:center;gap:clamp(4px,.7vw,8px);">
+                <div style="font-size:clamp(14px,2vw,20px);">☕</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:var(--app-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">スターバックス 六本木店</div>
+                  <div style="font-size:clamp(4.5px,.65vw,7px);color:var(--app-gray);">カフェ</div>
+                </div>
+              </div>
+            </div>
+            <div style="background:#f5f5f5;border-radius:8px;padding:clamp(4px,.7vw,7px);text-align:center;font-size:clamp(5.5px,.78vw,8px);color:var(--app-gray);font-weight:600;flex-shrink:0;">
+              🔍 他の場所を探す
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== SLIDE 08: BOOKMARKS ========== -->
 <section class="slide">
   <div class="slide-bg"></div>
   <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 08 — BOOKMARKS</div>
+  <div class="corner-mark tl mono-label">// 08 — LIST</div>
   <div class="std-layout">
     <div class="text-col">
       <div class="mono-label reveal d1">OVERVIEW YOUR SAVES</div>
@@ -1199,6 +1336,159 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
   </div>
 </section>
 
+<!-- ========== SLIDE: EXPLORE ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 09 — EXPLORE</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">BROWSE TO DISCOVER</div>
+      <h2 class="slide-h2 reveal d2" data-e>雑誌を読む感覚で、<br>気になる場所を見つけて保存</h2>
+      <p class="slide-p reveal d3" data-e>BOMDEの探索機能では、東京のイベント情報やユーザーが実際に訪れたおすすめ投稿をスワイプで閲覧できます。気になったものは即ブックマーク。SNSを眺めるように流し読みするだけで、行きたい場所リストが自然と育っていきます。</p>
+      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>スクロールするだけで「行きたい」が増えていく、受動的な発見体験。</span></div>
+      <div class="bullet-list reveal d5">
+        <div class="bullet-item" data-e>東京のイベント・スポット情報を毎日更新</div>
+        <div class="bullet-item" data-e>ユーザーの実体験に基づいたおすすめ投稿を閲覧</div>
+        <div class="bullet-item" data-e>気になった投稿はそのままブックマーク、地図にも反映</div>
+        <div class="bullet-item" data-e>スワイプで「良い」「後で」を直感的に仕分け</div>
+      </div>
+    </div>
+    <!-- Phone: magazine-style explore -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen swipe-screen">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">
+            <span>探索</span>
+            <span style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);">📰 今日のおすすめ</span>
+          </div>
+          <div class="screen-body">
+            <div class="swipe-card-wrap">
+              <!-- Stack: back card -->
+              <div style="position:absolute;width:88%;border-radius:clamp(12px,1.8vw,18px);background:linear-gradient(160deg,#3DDAD7,#2A93D5);opacity:.3;transform:scale(.94) translateY(clamp(8px,1.3vw,16px));height:85%;top:5%;"></div>
+              <!-- Main magazine card -->
+              <div class="swipe-card" style="background:#fff;animation:swipeLoop 5s ease-in-out infinite;">
+                <!-- Magazine hero -->
+                <div style="flex:1.4;background:linear-gradient(145deg,#1a0533 0%,#3d0f78 45%,#ff2d78 100%);display:flex;flex-direction:column;justify-content:space-between;padding:clamp(6px,1vw,11px);position:relative;overflow:hidden;">
+                  <div style="position:absolute;inset:0;background:radial-gradient(circle at 72% 28%,rgba(255,184,48,.28) 0%,transparent 55%),radial-gradient(circle at 18% 78%,rgba(0,245,212,.22) 0%,transparent 48%);pointer-events:none;"></div>
+                  <!-- Tags -->
+                  <div style="display:flex;gap:3px;position:relative;z-index:1;flex-wrap:wrap;">
+                    <div style="background:#ff2d78;color:#fff;font-size:clamp(3.5px,.52vw,5.5px);font-weight:700;padding:.18em .45em;border-radius:100px;">🎪 イベント</div>
+                    <div style="background:rgba(255,255,255,.22);color:#fff;font-size:clamp(3.5px,.52vw,5.5px);font-weight:700;padding:.18em .45em;border-radius:100px;">📍 渋谷</div>
+                    <div style="background:rgba(255,255,255,.22);color:#fff;font-size:clamp(3.5px,.52vw,5.5px);font-weight:700;padding:.18em .45em;border-radius:100px;">🆓 無料</div>
+                  </div>
+                  <!-- Hero emoji -->
+                  <div style="font-size:clamp(30px,4.5vw,56px);text-align:center;position:relative;z-index:1;line-height:1;">🎪</div>
+                  <!-- Event title -->
+                  <div style="position:relative;z-index:1;">
+                    <div style="color:#fff;font-size:clamp(8px,1.15vw,13px);font-weight:900;line-height:1.2;" data-e>渋谷ストリートマーケット</div>
+                    <div style="color:rgba(255,255,255,.72);font-size:clamp(5px,.72vw,7px);margin-top:2px;">11/15（土）〜 11/17（月）</div>
+                  </div>
+                </div>
+                <!-- Magazine body -->
+                <div class="swipe-card-info">
+                  <div style="display:flex;align-items:center;gap:3px;margin-bottom:clamp(2px,.4vw,4px);">
+                    <div style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-primary);font-weight:700;">👤 BOMDE編集部</div>
+                  </div>
+                  <div style="font-size:clamp(5.5px,.8vw,8.5px);color:var(--app-text);line-height:1.45;">秋の渋谷に17ブランドが集結。フード・クラフト・音楽が一堂に。</div>
+                </div>
+                <div class="good-badge">GOOD ♥</div>
+              </div>
+            </div>
+            <div class="swipe-btns">
+              <div class="swipe-btn btn-pass">✕</div>
+              <div class="swipe-btn btn-good">♥</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab active"><div class="tab-icon">🔍</div>探索</div>
+            <div class="tab"><div class="tab-icon">🔖</div>保存</div>
+            <div class="tab"><div class="tab-icon">🗺️</div>マップ</div>
+            <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE: POST CREATION ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 10 — POST</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">CREATE & SHARE</div>
+      <h2 class="slide-h2 reveal d2" data-e>気に入った場所を、<br>魅力的な投稿として簡単に公開</h2>
+      <p class="slide-p reveal d3" data-e>行ったお店やイベントを、写真・キャッチコピー・場所情報を組み合わせた投稿として公開できます。一般公開すれば探索画面に表示され、他のユーザーのブックマークに追加されることも。自分だけの記録用としても作成可能です。</p>
+      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>おすすめを共有したい人にも、記録だけしたい人にも使える投稿機能。</span></div>
+      <div class="bullet-list reveal d5">
+        <div class="bullet-item" data-e>場所・写真・キャッチコピーを組み合わせ、魅力的な投稿を数ステップで作成</div>
+        <div class="bullet-item" data-e>一般公開投稿は探索画面に表示され、他ユーザーのブックマークに追加される</div>
+        <div class="bullet-item" data-e>自分用（非公開）でも作成でき、「行った記録」としてそのまま保存</div>
+        <div class="bullet-item" data-e>場所検索で営業時間・価格帯を自動補完</div>
+      </div>
+    </div>
+    <!-- Two phones: selection + confirmation -->
+    <div class="phone-col reveal-r d3" style="gap:clamp(0.5rem,1.2vw,1rem);">
+      <!-- Phone A: public / private selection -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen" style="background:#f8fffe;">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">新規投稿</div>
+          <div class="screen-body" style="padding:clamp(5px,.8vw,9px);display:flex;flex-direction:column;gap:clamp(5px,.8vw,8px);overflow:hidden;">
+            <div style="font-size:clamp(7px,1vw,11px);font-weight:700;color:var(--app-text);text-align:center;padding-bottom:clamp(2px,.3vw,4px);">だれのための記録？</div>
+            <!-- Public -->
+            <div style="background:#fff;border:2px solid var(--app-primary);border-radius:10px;padding:clamp(7px,1.1vw,13px) clamp(6px,1vw,10px);display:flex;align-items:flex-start;gap:clamp(5px,.8vw,8px);">
+              <div style="font-size:clamp(16px,2.3vw,26px);">🌐</div>
+              <div>
+                <div style="font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:var(--app-primary);">一般公開</div>
+                <div style="font-size:clamp(4.5px,.65vw,7px);color:var(--app-gray);margin-top:2px;line-height:1.4;">探索画面に表示され、他のユーザーにも届く</div>
+              </div>
+            </div>
+            <!-- Private -->
+            <div style="background:#fff;border:1.5px solid rgba(0,0,0,.1);border-radius:10px;padding:clamp(7px,1.1vw,13px) clamp(6px,1vw,10px);display:flex;align-items:flex-start;gap:clamp(5px,.8vw,8px);">
+              <div style="font-size:clamp(16px,2.3vw,26px);">🔒</div>
+              <div>
+                <div style="font-size:clamp(6.5px,.95vw,10px);font-weight:700;color:var(--app-text);">自分用（行った記録）</div>
+                <div style="font-size:clamp(4.5px,.65vw,7px);color:var(--app-gray);margin-top:2px;line-height:1.4;">自分だけに見える記録として保存</div>
+              </div>
+            </div>
+            <div style="background:var(--app-primary);color:#fff;border-radius:8px;padding:clamp(6px,1vw,10px);text-align:center;font-size:clamp(6.5px,.95vw,10px);font-weight:700;margin-top:auto;">次へ →</div>
+          </div>
+        </div>
+      </div>
+      <!-- Phone B: post confirmation preview -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen" style="background:#fff;">
+          <div class="sb"><span>9:41</span><span>●●●</span></div>
+          <div class="app-header">確認して投稿</div>
+          <div class="screen-body" style="overflow:hidden;display:flex;flex-direction:column;">
+            <!-- Hero image -->
+            <div style="height:clamp(62px,9.5vw,105px);background:linear-gradient(145deg,#c8f7e8 0%,#7dd6a8 55%,#3dbb82 100%);display:flex;align-items:center;justify-content:center;font-size:clamp(28px,4.2vw,50px);flex-shrink:0;position:relative;">
+              🥗
+              <div style="position:absolute;top:clamp(4px,.6vw,6px);left:clamp(4px,.6vw,6px);background:rgba(0,0,0,.42);color:#fff;font-size:clamp(3.5px,.52vw,5.5px);font-weight:700;padding:.15em .4em;border-radius:3px;">🌐 一般公開</div>
+            </div>
+            <div style="padding:clamp(5px,.8vw,9px);display:flex;flex-direction:column;gap:clamp(4px,.6vw,6px);flex:1;overflow:hidden;">
+              <div style="font-size:clamp(7px,1vw,11px);font-weight:700;color:var(--app-text);line-height:1.3;">ランチならここ！絶品パスタを発見</div>
+              <div style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);">📍 パスタバル ドンビノキオ · 大田区蒲田</div>
+              <div style="display:flex;gap:3px;flex-wrap:wrap;">
+                <div style="background:rgba(61,218,215,.12);color:var(--app-primary);font-size:clamp(4px,.6vw,6px);font-weight:700;padding:.18em .45em;border-radius:100px;">🍝 パスタ</div>
+                <div style="background:#f0f0f0;color:var(--app-gray);font-size:clamp(4px,.6vw,6px);font-weight:700;padding:.18em .45em;border-radius:100px;">¥¥</div>
+                <div style="background:#f0f0f0;color:var(--app-gray);font-size:clamp(4px,.6vw,6px);font-weight:700;padding:.18em .45em;border-radius:100px;">🕐 〜0:30</div>
+              </div>
+              <div style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);line-height:1.4;">SNSで気になってたお店。パスタのコシが最高でした！</div>
+              <div style="background:var(--app-primary);color:#fff;border-radius:8px;padding:clamp(5px,.8vw,9px);text-align:center;font-size:clamp(6.5px,.95vw,10px);font-weight:700;margin-top:auto;flex-shrink:0;">投稿する</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== SLIDE: FEATURES ========== -->
 <section class="slide">
   <div class="slide-bg"></div>
@@ -1210,9 +1500,12 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
       <div class="sum-card reveal d3"><div class="sum-icon">📸</div><div class="sum-title" data-e>どこからでも集められる</div><div class="sum-desc" data-e>SNS・TikTok・Googleマップ・マップ検索など複数の経路から保存。</div></div>
       <div class="sum-card reveal d3"><div class="sum-icon">💡</div><div class="sum-title" data-e>きっかけまで残せる</div><div class="sum-desc" data-e>保存元の投稿に戻れるので、なぜ気になったかまで思い出せる。</div></div>
       <div class="sum-card reveal d3"><div class="sum-icon">🗺️</div><div class="sum-title" data-e>地図で一目でわかる</div><div class="sum-desc" data-e>48カテゴリのアイコンで、お店・スポット・イベントを直感把握。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">🟢</div><div class="sum-title" data-e>今日行ける場所が見つかる</div><div class="sum-desc" data-e>営業中・開催中イベント・現在地フィルターで、その日の行き先を決めやすく。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">📍</div><div class="sum-title" data-e>訪問体験を蓄積できる</div><div class="sum-desc" data-e>チェックイン・メモ・写真で、何度行っても記録が積み重なる。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">📂</div><div class="sum-title" data-e>テーマ別に振り返れる</div><div class="sum-desc" data-e>旅行・デート・日常など、文脈ごとのアルバムでまた見返したくなる記録に。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">🟢</div><div class="sum-title" data-e>今日行ける場所が見つかる</div><div class="sum-desc" data-e>営業中・イベント・ブックマーク通知で行き先を逃さない。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">🔔</div><div class="sum-title" data-e>記録し忘れない</div><div class="sum-desc" data-e>滞在検知で自動チェックインを提案。偶然の訪問も残せる。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">📋</div><div class="sum-title" data-e>一覧で迷わず探せる</div><div class="sum-desc" data-e>絞り込み・並べ替えで、保存が増えても目的の場所をすぐ発見。</div></div>
+      <div class="sum-card reveal d5"><div class="sum-icon">📰</div><div class="sum-title" data-e>雑誌感覚で発見できる</div><div class="sum-desc" data-e>東京イベントやユーザー投稿をスワイプで閲覧・即ブックマーク。</div></div>
+      <div class="sum-card reveal d5"><div class="sum-icon">✏️</div><div class="sum-title" data-e>投稿・自分用記録も作れる</div><div class="sum-desc" data-e>魅力的な投稿を数ステップで作成。非公開の記録用としても使える。</div></div>
+      <div class="sum-card reveal d5"><div class="sum-icon">📂</div><div class="sum-title" data-e>テーマ別に振り返れる</div><div class="sum-desc" data-e>旅行・デート・日常など、文脈ごとのアルバムでまた見返したくなる記録に。</div></div>
     </div>
   </div>
 </section>
