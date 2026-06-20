@@ -562,6 +562,21 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
 }
 
 
+/* ============================================================
+   PHONE SCREEN: LIVELY EVENT MAP (Page 4)
+   ============================================================ */
+.map-filter-chips{display:flex;gap:3px;padding:clamp(3px,.5vw,5px) clamp(4px,.7vw,7px);overflow:hidden;background:rgba(255,255,255,.97);border-bottom:1px solid rgba(0,0,0,.08);flex-shrink:0;}
+.mfc{font-size:clamp(4.5px,.65vw,7px);padding:.2em .5em;border-radius:100px;font-weight:700;white-space:nowrap;}
+.mfc.on{background:var(--app-primary);color:#fff;}
+.mfc.off{background:#eee;color:var(--app-gray);}
+.event-pin-wrap{position:absolute;z-index:5;display:inline-block;}
+.event-badge{position:absolute;top:calc(-1 * clamp(5px,.75vw,8px));right:calc(-1 * clamp(9px,1.3vw,14px));background:#ff2d78;color:#fff;font-size:clamp(3.5px,.52vw,5.5px);font-weight:700;padding:.15em .38em;border-radius:3px;white-space:nowrap;z-index:8;}
+.cur-loc-wrap{position:absolute;z-index:7;display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%);}
+.cur-loc-pulse{position:absolute;width:clamp(16px,2.4vw,26px);height:clamp(16px,2.4vw,26px);border-radius:50%;background:rgba(42,147,213,.28);animation:curPulse 1.8s ease-out infinite;}
+.cur-loc-dot{width:clamp(7px,1vw,11px);height:clamp(7px,1vw,11px);border-radius:50%;background:var(--app-secondary);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);position:relative;z-index:1;}
+@keyframes curPulse{0%{transform:scale(.5);opacity:.8;}100%{transform:scale(2.8);opacity:0;}}
+.event-popup-sub{font-size:clamp(5px,.72vw,7.5px);color:#ff2d78;margin-top:1px;font-weight:700;}
+
 /* === INLINE EDITING === */
 .edit-hotzone{position:fixed;top:0;left:0;width:80px;height:80px;z-index:10000;cursor:pointer;}
 .edit-toggle{position:fixed;top:16px;left:16px;width:34px;height:34px;border-radius:50%;
@@ -651,62 +666,21 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
   <div class="corner-mark bl mono-label">BOMDE App</div>
 </section>
 
-<!-- ========== SLIDE 02: LOGIN ========== -->
-<section class="slide">
-  <div class="slide-bg"></div>
-  <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 01 — LOGIN</div>
-  <div class="std-layout">
-    <div class="text-col">
-      <div class="mono-label reveal d1">START FAST</div>
-      <h2 class="slide-h2 reveal d2" data-e>登録で止まらず、<br>すぐ使い始められる</h2>
-      <p class="slide-p reveal d3" data-e>GoogleまたはApple IDでワンタップ開始。面倒な入力を減らし、見つけた場所を整理する体験まで最短で進めます。</p>
-      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>初回のハードルを下げ、継続利用につなげる導線。</span></div>
-      <div class="bullet-list reveal d5">
-        <div class="bullet-item" data-e>普段使うアカウントで迷わずサインアップ</div>
-        <div class="bullet-item" data-e>次回から自動ログインで、開いた瞬間に使える</div>
-        <div class="bullet-item" data-e>メール登録にも対応し、利用者の選択肢を確保</div>
-      </div>
-    </div>
-    <!-- Phone: login screen -->
-    <div class="phone-col reveal-r d3">
-      <div class="phone">
-        <div class="phone-screen login-screen" style="display:flex;flex-direction:column;gap:clamp(8px,1.2vw,14px);">
-          <div class="sb" style="width:100%;"><span>9:41</span><span>●●● 100%</span></div>
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,1.2vw,14px);padding:clamp(8px,1.2vw,14px);">
-            <div class="login-logo">BOMDE</div>
-            <div class="login-sub" data-e>行きたい場所を、今日の目的地に</div>
-            <div style="width:100%;display:flex;flex-direction:column;gap:clamp(5px,.8vw,9px);align-items:center;">
-              <div class="login-social-btn btn-google">
-                <span>🔵</span><span>Googleでログイン</span>
-              </div>
-              <div class="login-social-btn btn-apple">
-                <span>🍎</span><span>Appleでログイン</span>
-              </div>
-            </div>
-            <div class="login-divider">または</div>
-            <div style="font-size:clamp(5.5px,.78vw,8px);color:var(--app-primary);font-weight:600;">メールアドレスで登録</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ========== SLIDE 03: IMPORT ========== -->
 <section class="slide">
   <div class="slide-bg"></div>
   <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 02 — IMPORT</div>
+  <div class="corner-mark tl mono-label">// 01 — IMPORT</div>
   <div class="std-layout">
     <div class="text-col">
-      <div class="mono-label reveal d1">SAVE WITHOUT COPYWORK</div>
-      <h2 class="slide-h2 reveal d2" data-e>SNSで見つけたお店を、<br>忘れる前に保存</h2>
-      <p class="slide-p reveal d3" data-e>投稿URLを貼り付けるだけで、キャプションや位置情報から場所候補を抽出。気になった瞬間の熱量を、そのままブックマークに変えられます。</p>
+      <div class="mono-label reveal d1">COLLECT FROM ANYWHERE</div>
+      <h2 class="slide-h2 reveal d2" data-e>見つけたお店やイベントを、<br>まとめてBOMDEに集約</h2>
+      <p class="slide-p reveal d3" data-e>気になるお店やイベントを見つけたら、サイトや投稿の共有ボタンからBOMDEを選ぶだけ。キャプションや位置情報をもとに場所候補を抽出し、アプリ・サイトごとに分かれていたブックマークをひとつに集約できます。</p>
       <div class="bullet-list reveal d4">
         <div class="bullet-item" data-e>まとめ投稿の複数スポットも一括保存</div>
         <div class="bullet-item" data-e>既存のGoogleマップ保存データも取り込める</div>
         <div class="bullet-item" data-e>カテゴリ自動判定で、保存後すぐ地図で探せる</div>
+        <div class="bullet-item" data-e>BOMDE上のマップ検索からも、そのままインポート可能</div>
       </div>
     </div>
     <!-- Phone: import screen -->
@@ -757,22 +731,409 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
   </div>
 </section>
 
-<!-- ========== SLIDE 04: BOOKMARKS ========== -->
+<!-- ========== SLIDE 05: MAP ========== -->
 <section class="slide">
   <div class="slide-bg"></div>
   <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 03 — BOOKMARKS</div>
+  <div class="corner-mark tl mono-label">// 02 — MAP</div>
   <div class="std-layout">
     <div class="text-col">
-      <div class="mono-label reveal d1">ORGANIZE INTENT</div>
-      <h2 class="slide-h2 reveal d2" data-e>「行きたい」が、<br>行動できるリストになる</h2>
-      <p class="slide-p reveal d3" data-e>保存した場所を「行きたい」「行った」「お気に入り」で整理。候補探しから訪問後の振り返りまで、場所との関係をひとつの流れで管理できます。</p>
-      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>ただの保存リストではなく、次の外出につながる場所台帳。</span></div>
+      <div class="mono-label reveal d1">SEE BY CATEGORY</div>
+      <h2 class="slide-h2 reveal d2" data-e>インポートした場所が、<br>カテゴリ別アイコンで地図に並ぶ</h2>
+      <p class="slide-p reveal d3" data-e>BOMDEにインポートしたお店・スポット・イベントには、カテゴリに合ったアイコンを自動付与。保存した情報を地図上でアイコン別に見られるので、どこに何があるかを直感的に把握できます。</p>
+      <div class="bullet-list reveal d4">
+        <div class="bullet-item" data-e>カテゴリ別アイコンで、グルメ・スポット・イベントを直感的に把握</div>
+        <div class="bullet-item" data-e>行きたい / 行った / お気に入りを切り替えて表示</div>
+        <div class="bullet-item" data-e>自動分類されたカテゴリは、あとから手動で変更可能</div>
+        <div class="bullet-item" data-e>48カテゴリに対応し、お店・イベントを細かく整理</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4em;margin-top:.3em;" class="reveal d5">
+        <span class="feat-tag tc">グルメ・カフェ 24種</span>
+        <span class="feat-tag tm">ショッピング・エンタメ 11種</span>
+        <span class="feat-tag ta">観光・自然・ほか 13種</span>
+      </div>
+    </div>
+    <!-- Phone: map screen -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen map-screen" style="display:flex;flex-direction:column;">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="map-search">🔍 <span style="color:var(--app-gray)">場所を検索...</span></div>
+          <div class="map-tabs">
+            <div class="map-tab active">♥ 行きたい</div>
+            <div class="map-tab">✓ 行った</div>
+            <div class="map-tab">★ お気に入り</div>
+          </div>
+          <div class="map-bg" style="flex:1;position:relative;">
+            <div class="map-road-h" style="top:30%;"></div>
+            <div class="map-road-h" style="top:60%;"></div>
+            <div class="map-road-v" style="left:35%;"></div>
+            <div class="map-road-v" style="left:65%;"></div>
+            <div class="map-pin" style="top:22%;left:28%;animation-delay:.1s;">☕</div>
+            <div class="map-pin" style="top:40%;left:58%;animation-delay:.25s;">🍜</div>
+            <div class="map-pin" style="top:15%;left:60%;animation-delay:.4s;">🍣</div>
+            <div class="map-pin" style="top:55%;left:25%;animation-delay:.55s;">🍰</div>
+            <div class="map-pin" style="top:35%;left:40%;animation-delay:.7s;">🍺</div>
+            <div class="map-loc-btn">📍</div>
+            <div class="map-popup">
+              <div class="map-popup-icon">☕</div>
+              <div class="map-popup-info">
+                <div class="map-popup-name">猿田彦珈琲 代官山</div>
+                <div class="map-popup-sub">カフェ · 営業中 · 渋谷区</div>
+              </div>
+              <div class="map-popup-btn">詳細</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab"><div class="tab-icon">🔍</div>探索</div>
+            <div class="tab"><div class="tab-icon">🔖</div>保存</div>
+            <div class="tab active"><div class="tab-icon">🗺️</div>マップ</div>
+            <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 06: FILTER ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 03 — FILTER</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">OPEN THE MAP, REMEMBER YOUR INTERESTS</div>
+      <h2 class="slide-h2 reveal d2" data-e>近くの「行きたい」が、<br>今日のきっかけになる</h2>
+      <p class="slide-p reveal d3" data-e>特に行き先が決まっていない日でも、BOMDEを開けば、近くで開催中のイベントや営業中のお店が見つかります。自分が保存した興味を地図上で思い出せるから、「ちょっと行ってみよう」が自然に生まれます。</p>
+      <div class="bullet-list reveal d4">
+        <div class="bullet-item" data-e>営業中のお店や開催中のイベントを、今行ける候補としてすぐに確認</div>
+        <div class="bullet-item" data-e>カテゴリ・エリア・価格帯を組み合わせて、その日の気分に合う場所を見つけやすく</div>
+      </div>
+    </div>
+    <!-- Phone: lively event map -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen map-screen" style="display:flex;flex-direction:column;">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <!-- Filter chips -->
+          <div class="map-filter-chips">
+            <div class="mfc on">🎪 イベント</div>
+            <div class="mfc on">🟢 営業中</div>
+            <div class="mfc off">☕ カフェ</div>
+            <div class="mfc off">🍜 グルメ</div>
+          </div>
+          <!-- Map -->
+          <div class="map-bg" style="flex:1;position:relative;">
+            <div class="map-road-h" style="top:38%;"></div>
+            <div class="map-road-h" style="top:68%;"></div>
+            <div class="map-road-v" style="left:32%;"></div>
+            <div class="map-road-v" style="left:64%;"></div>
+            <!-- Event pins with 開催中 badge -->
+            <div class="event-pin-wrap" style="top:18%;left:44%;">
+              <div class="map-pin" style="animation-delay:.1s;">🎪</div>
+              <div class="event-badge">開催中!</div>
+            </div>
+            <div class="event-pin-wrap" style="top:50%;left:22%;">
+              <div class="map-pin" style="animation-delay:.5s;">🎵</div>
+              <div class="event-badge">開催中!</div>
+            </div>
+            <!-- Regular pins -->
+            <div class="map-pin" style="top:12%;left:18%;animation-delay:.2s;">☕</div>
+            <div class="map-pin" style="top:26%;left:72%;animation-delay:.35s;">🍰</div>
+            <div class="map-pin" style="top:56%;left:66%;animation-delay:.65s;">🍜</div>
+            <div class="map-pin" style="top:72%;left:42%;animation-delay:.8s;">🍺</div>
+            <!-- Current location -->
+            <div class="cur-loc-wrap" style="top:40%;left:50%;">
+              <div class="cur-loc-pulse"></div>
+              <div class="cur-loc-pulse" style="animation-delay:.7s;opacity:.5;"></div>
+              <div class="cur-loc-dot"></div>
+            </div>
+            <!-- Location button -->
+            <div class="map-loc-btn">📍</div>
+            <!-- Event popup -->
+            <div class="map-popup">
+              <div class="map-popup-icon">🎪</div>
+              <div class="map-popup-info">
+                <div class="map-popup-name">渋谷ストリートマーケット</div>
+                <div class="event-popup-sub">開催中！· 〜21:00 · 徒歩5分</div>
+              </div>
+              <div class="map-popup-btn">詳細</div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab"><div class="tab-icon">🔍</div>探索</div>
+            <div class="tab"><div class="tab-icon">🔖</div>保存</div>
+            <div class="tab active"><div class="tab-icon">🗺️</div>マップ</div>
+            <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE: SOURCE ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 04 — SOURCE</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">REMEMBER WHY</div>
+      <h2 class="slide-h2 reveal d2" data-e>なぜ行きたかったかまで、<br>あとから思い出せる</h2>
+      <p class="slide-p reveal d3" data-e>BOMDEでは、ブックマークがSNS投稿・アプリ内の探索・Googleマップ・マップ検索など、どこをきっかけに保存されたものかを確認できます。投稿から保存した場所は元の投稿へ戻れるので、写真やキャプションを見ながら「なぜ気になったのか」まで思い出せます。</p>
+      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>場所だけでなく、行きたくなったきっかけまで残せるブックマーク。</span></div>
       <div class="bullet-list reveal d5">
-        <div class="bullet-item" data-e>行く前の候補、訪問済み、リピートしたい場所を分けて管理</div>
-        <div class="bullet-item" data-e>すべての追加経路が同じリストに集まり、探し直しが不要</div>
-        <div class="bullet-item" data-e>不要な候補はすぐ削除、気になる場所は詳細で確認</div>
-        <div class="bullet-item" data-e>訪問後はメモ・写真つきの記録へ自然に移行</div>
+        <div class="bullet-item" data-e>SNS投稿、探索画面、Googleマップなど保存元を確認できる</div>
+        <div class="bullet-item" data-e>投稿から保存した場所は、元の投稿に戻って内容を見返せる</div>
+        <div class="bullet-item" data-e>マップ検索から保存した場所にもメモを残し、聞いた理由や気になった理由を記録</div>
+        <div class="bullet-item" data-e>保存したきっかけを思い出せるから、行く前の期待感も取り戻せる</div>
+      </div>
+    </div>
+    <!-- Phone: bookmark detail with source -->
+    <div class="phone-col reveal-r d3">
+      <div class="phone">
+        <div class="phone-screen" style="background:#f8fffe;">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">
+            <span>ブックマーク詳細</span>
+            <span style="font-size:clamp(8px,1.2vw,14px);color:var(--app-gray);">✕</span>
+          </div>
+          <div class="screen-body" style="padding:clamp(5px,.8vw,9px);display:flex;flex-direction:column;gap:clamp(4px,.7vw,7px);overflow:hidden;">
+            <!-- Place info -->
+            <div style="background:#fff;border-radius:10px;padding:clamp(6px,1vw,10px);box-shadow:0 1px 4px rgba(0,0,0,.08);display:flex;align-items:center;gap:clamp(5px,.8vw,9px);">
+              <div style="font-size:clamp(18px,2.7vw,32px);flex-shrink:0;">🍝</div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:clamp(7px,1vw,11px);font-weight:700;color:var(--app-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">パスタバル ドンビノキオ</div>
+                <div style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);margin-top:1px;">大田区蒲田 · イタリアン</div>
+                <div style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-good);margin-top:1px;">🟢 営業中 〜0:30</div>
+              </div>
+            </div>
+            <!-- Status buttons -->
+            <div style="display:flex;gap:clamp(3px,.5vw,5px);">
+              <div style="flex:1;background:var(--app-primary);color:#fff;border-radius:8px;padding:clamp(4px,.7vw,7px);text-align:center;font-size:clamp(5.5px,.78vw,8px);font-weight:700;">♥ 行きたい</div>
+              <div style="flex:1;background:#eee;color:var(--app-gray);border-radius:8px;padding:clamp(4px,.7vw,7px);text-align:center;font-size:clamp(5.5px,.78vw,8px);font-weight:700;">✓ 行った</div>
+              <div style="flex:1;background:#eee;color:var(--app-gray);border-radius:8px;padding:clamp(4px,.7vw,7px);text-align:center;font-size:clamp(5.5px,.78vw,8px);font-weight:700;">★ お気に入り</div>
+            </div>
+            <!-- Source section -->
+            <div style="background:#fff;border-radius:10px;padding:clamp(6px,1vw,10px);box-shadow:0 1px 4px rgba(0,0,0,.08);">
+              <div style="font-size:clamp(5px,.72vw,7.5px);font-weight:700;color:var(--app-gray);text-transform:uppercase;letter-spacing:.08em;margin-bottom:clamp(4px,.6vw,6px);">保存のきっかけ</div>
+              <div style="display:flex;align-items:center;gap:clamp(4px,.7vw,8px);background:rgba(61,218,215,.07);border:1.5px solid rgba(61,218,215,.35);border-radius:8px;padding:clamp(5px,.8vw,8px);">
+                <div style="font-size:clamp(14px,2vw,20px);">📸</div>
+                <div style="flex:1;">
+                  <div style="font-size:clamp(6px,.88vw,9px);font-weight:700;color:var(--app-text);">Instagram投稿から保存</div>
+                  <div style="font-size:clamp(4.5px,.65vw,7px);color:var(--app-gray);margin-top:1px;">2025.11.08 保存</div>
+                </div>
+              </div>
+            </div>
+            <!-- Action buttons -->
+            <div style="background:var(--app-primary);color:#fff;border-radius:8px;padding:clamp(6px,1vw,10px);text-align:center;font-size:clamp(6.5px,.95vw,10px);font-weight:700;">
+              📸 投稿を見る →
+            </div>
+            <div style="background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:8px;padding:clamp(5px,.8vw,9px);text-align:center;font-size:clamp(6px,.88vw,9px);font-weight:700;color:var(--app-text);">
+              🗺️ Googleマップで開く
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab"><div class="tab-icon">🔍</div>探索</div>
+            <div class="tab active"><div class="tab-icon">🔖</div>保存</div>
+            <div class="tab"><div class="tab-icon">🗺️</div>マップ</div>
+            <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 08: CHECK-IN ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 06 — CHECK-IN</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">TURN VISITS INTO MEMORY</div>
+      <h2 class="slide-h2 reveal d2" data-e>行った場所を、<br>忘れない記録に変える</h2>
+      <p class="slide-p reveal d3" data-e>初めて行った場所は「行った」として記録し、2回目以降はチェックインで訪問を積み重ねられます。訪問ごとにメモや写真を残せるので、どれだけ気に入っている場所か、また行きたい理由まで振り返りやすくなります。</p>
+      <div class="bullet-list reveal d4">
+        <div class="bullet-item" data-e>訪問日・メモ・写真をまとめて、その日の体験として記録</div>
+        <div class="bullet-item" data-e>訪問回数が積み重なり、リピートするほど自分だけの場所履歴が濃くなる</div>
+        <div class="bullet-item" data-e>写真や感想をまとめて、再訪や友人への共有にも活用</div>
+      </div>
+    </div>
+    <!-- Phone: check-in calendar + visit history -->
+    <div class="phone-col reveal-r d3" style="gap:clamp(0.5rem,1.2vw,1rem);">
+      <!-- Phone A: check-in calendar -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen checkin-screen">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="cal-header">訪問日を選択 — 2025年11月</div>
+          <div class="cal-grid">
+            <div class="cal-day-label">日</div><div class="cal-day-label">月</div><div class="cal-day-label">火</div>
+            <div class="cal-day-label">水</div><div class="cal-day-label">木</div><div class="cal-day-label">金</div><div class="cal-day-label">土</div>
+            <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
+            <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day">1</div><div class="cal-day">2</div>
+            <div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div>
+            <div class="cal-day visited">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div>
+            <div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div>
+            <div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day today">15</div><div class="cal-day">16</div>
+          </div>
+          <div class="memo-area">
+            <div class="memo-label">メモ（任意）</div>
+            <textarea class="memo-input" readonly>友人と来店。牡蠣のパスタが絶品。次は夜に来たい！</textarea>
+          </div>
+          <div style="padding:0 clamp(5px,.8vw,9px);flex-shrink:0;">
+            <div style="font-size:clamp(5.5px,.78vw,8px);color:var(--app-gray);margin-bottom:3px;">📷 写真を追加（任意）</div>
+            <div style="display:flex;gap:3px;">
+              <div style="width:clamp(22px,3.2vw,32px);height:clamp(22px,3.2vw,32px);border-radius:4px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:clamp(10px,1.5vw,16px);">+</div>
+            </div>
+          </div>
+          <div class="checkin-btn">✓ チェックインする</div>
+        </div>
+      </div>
+      <!-- Phone B: visit history -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen visit-screen">
+          <div class="sb"><span>9:41</span><span>●●●</span></div>
+          <div class="visit-header-bar">訪問履歴 — 猿田彦珈琲</div>
+          <div class="screen-body">
+            <div class="visit-history">
+              <div class="visit-entry">
+                <div class="visit-date">2025.11.15（土）</div>
+                <div class="visit-memo-text" data-e>友人と来店。牡蠣のパスタが絶品！</div>
+                <div class="visit-photo">📷 写真 3枚</div>
+              </div>
+              <div class="visit-entry">
+                <div class="visit-date">2025.10.02（木）</div>
+                <div class="visit-memo-text" data-e>ランチ。アボカドトーストが◎</div>
+                <div class="visit-photo">📷 写真 1枚</div>
+              </div>
+              <div class="visit-entry">
+                <div class="visit-date">2025.08.20（水）</div>
+                <div class="visit-memo-text" data-e>初訪問。雰囲気最高。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 09: ALBUM ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 07 — ALBUM</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">CONTEXTUAL ALBUMS</div>
+      <h2 class="slide-h2 reveal d2" data-e>旅も日常も、<br>テーマ別に振り返れる</h2>
+      <p class="slide-p reveal d3" data-e>訪問した場所を、恋人・友達・旅行・趣味など、関係性やテーマごとのアルバムに整理。単なる記録ではなく、また見返したくなるコレクションになります。</p>
+      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>行った場所を、文脈ごとに見返せる思い出のコレクションへ。</span></div>
+      <div class="bullet-list reveal d5">
+        <div class="bullet-item" data-e>恋人・友達・家族・旅行など、自由なテーマでアルバムを作成</div>
+        <div class="bullet-item" data-e>訪問写真・メモがまとまり、思い出を追いやすい</div>
+        <div class="bullet-item" data-e>チェックイン後にアルバム追加を促し、整理漏れを防ぐ</div>
+      </div>
+    </div>
+    <!-- Two phones side by side -->
+    <div class="phone-col reveal-r d3" style="gap:clamp(0.5rem,1.2vw,1rem);">
+      <!-- Phone A: album list -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen album-screen">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">アルバム<span style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray)">3件</span></div>
+          <div class="screen-body">
+            <div class="album-list-inner">
+              <div class="album-row">
+                <div class="album-thumb-box at-a">🍝</div>
+                <div class="album-info-box">
+                  <div class="album-row-name">イタリアン旅</div>
+                  <div class="album-row-sub">8か所 · 最終訪問 2025.11</div>
+                </div>
+                <div class="album-row-arr">›</div>
+              </div>
+              <div class="album-row">
+                <div class="album-thumb-box at-b">☕</div>
+                <div class="album-info-box">
+                  <div class="album-row-name">お気に入りカフェ</div>
+                  <div class="album-row-sub">12か所 · 最終訪問 2025.12</div>
+                </div>
+                <div class="album-row-arr">›</div>
+              </div>
+              <div class="album-row">
+                <div class="album-thumb-box at-c">🗾</div>
+                <div class="album-info-box">
+                  <div class="album-row-name">恋人とのおでかけ</div>
+                  <div class="album-row-sub">6か所 · 最終訪問 2025.10</div>
+                </div>
+                <div class="album-row-arr">›</div>
+              </div>
+              <div style="margin-top:4px;background:rgba(61,218,215,.08);border:1.5px dashed rgba(61,218,215,.4);border-radius:8px;padding:clamp(6px,1vw,10px);text-align:center;color:var(--app-primary);font-size:clamp(6px,.88vw,9px);font-weight:700;">
+                ＋ 新しいアルバムを作成
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Phone B: album detail -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen album-screen">
+          <div class="sb"><span>9:41</span><span>●●●</span></div>
+          <div class="app-header" style="background:var(--app-primary);color:#fff;">☕ イタリアン旅</div>
+          <div class="screen-body">
+            <div class="album-list-inner">
+              <div class="album-row">
+                <div class="album-thumb-box at-a">☕</div>
+                <div class="album-info-box">
+                  <div class="album-row-name">猿田彦珈琲 代官山</div>
+                  <div class="album-row-sub">3回訪問 · 最終 2025.11</div>
+                  <div class="visit-album-badge">📝 友人と来店。牡蠣のパスタが...</div>
+                </div>
+              </div>
+              <div class="album-row">
+                <div class="album-thumb-box at-b">🍕</div>
+                <div class="album-info-box">
+                  <div class="album-row-name">Savoy 元麻布</div>
+                  <div class="album-row-sub">1回訪問 · 2025.10</div>
+                  <div class="visit-album-badge">📝 マルゲリータが最高</div>
+                </div>
+              </div>
+              <div class="album-row">
+                <div class="album-thumb-box at-c">🍝</div>
+                <div class="album-info-box">
+                  <div class="album-row-name">Il Ristorante</div>
+                  <div class="album-row-sub">2回訪問 · 2025.09</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== SLIDE 08: BOOKMARKS ========== -->
+<section class="slide">
+  <div class="slide-bg"></div>
+  <div class="slide-accent-bar"></div>
+  <div class="corner-mark tl mono-label">// 08 — BOOKMARKS</div>
+  <div class="std-layout">
+    <div class="text-col">
+      <div class="mono-label reveal d1">OVERVIEW YOUR SAVES</div>
+      <h2 class="slide-h2 reveal d2" data-e>保存した候補を、<br>一覧で迷わず探せる</h2>
+      <p class="slide-p reveal d3" data-e>BOMDEに集約したお店・スポット・イベントを、リストでまとめて確認。カテゴリやエリア、営業状況、訪問ステータスで絞り込めるので、保存数が増えても目的に合う候補をすばやく見つけられます。</p>
+      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>増えていく「行きたい」を、探しやすい候補リストへ。</span></div>
+      <div class="bullet-list reveal d5">
+        <div class="bullet-item" data-e>保存したお店・スポット・イベントを一覧で俯瞰</div>
+        <div class="bullet-item" data-e>カテゴリ・エリア・営業状況で、目的に合う候補を絞り込み</div>
+        <div class="bullet-item" data-e>新着順・訪問日・訪問回数などで並べ替え、見たい順に整理</div>
+        <div class="bullet-item" data-e>行きたい／行った／お気に入りを切り替えて、状態ごとに管理</div>
       </div>
     </div>
     <!-- Phone: bookmark list -->
@@ -838,435 +1199,20 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
   </div>
 </section>
 
-<!-- ========== SLIDE 05: MAP ========== -->
+<!-- ========== SLIDE: FEATURES ========== -->
 <section class="slide">
   <div class="slide-bg"></div>
-  <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 04 — MAP</div>
-  <div class="std-layout">
-    <div class="text-col">
-      <div class="mono-label reveal d1">SEE NEARBY OPTIONS</div>
-      <h2 class="slide-h2 reveal d2" data-e>近くの「行きたい」が、<br>地図で見える</h2>
-      <p class="slide-p reveal d3" data-e>ブックマークを地図上に可視化。現在地や目的地の周辺で候補を見つけやすくなり、「あとで行こう」をその日の行動に変えられます。</p>
-      <div class="bullet-list reveal d4">
-        <div class="bullet-item" data-e>カテゴリ別アイコンで、カフェ・食事・観光を直感的に把握</div>
-        <div class="bullet-item" data-e>マップ検索から新しい場所をそのままブックマーク</div>
-        <div class="bullet-item" data-e>現在地にすぐ戻れるので、外出中でも迷わない</div>
-        <div class="bullet-item" data-e>行きたい / 行った / お気に入りを切り替えて表示</div>
-      </div>
-    </div>
-    <!-- Phone: map screen -->
-    <div class="phone-col reveal-r d3">
-      <div class="phone">
-        <div class="phone-screen map-screen" style="display:flex;flex-direction:column;">
-          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
-          <div class="map-search">🔍 <span style="color:var(--app-gray)">場所を検索...</span></div>
-          <div class="map-tabs">
-            <div class="map-tab active">♥ 行きたい</div>
-            <div class="map-tab">✓ 行った</div>
-            <div class="map-tab">★ お気に入り</div>
-          </div>
-          <div class="map-bg" style="flex:1;position:relative;">
-            <div class="map-road-h" style="top:30%;"></div>
-            <div class="map-road-h" style="top:60%;"></div>
-            <div class="map-road-v" style="left:35%;"></div>
-            <div class="map-road-v" style="left:65%;"></div>
-            <div class="map-pin" style="top:22%;left:28%;animation-delay:.1s;">☕</div>
-            <div class="map-pin" style="top:40%;left:58%;animation-delay:.25s;">🍜</div>
-            <div class="map-pin" style="top:15%;left:60%;animation-delay:.4s;">🍣</div>
-            <div class="map-pin" style="top:55%;left:25%;animation-delay:.55s;">🍰</div>
-            <div class="map-pin" style="top:35%;left:40%;animation-delay:.7s;">🍺</div>
-            <div class="map-loc-btn">📍</div>
-            <div class="map-popup">
-              <div class="map-popup-icon">☕</div>
-              <div class="map-popup-info">
-                <div class="map-popup-name">猿田彦珈琲 代官山</div>
-                <div class="map-popup-sub">カフェ · 営業中 · 渋谷区</div>
-              </div>
-              <div class="map-popup-btn">詳細</div>
-            </div>
-          </div>
-          <div class="tab-bar">
-            <div class="tab"><div class="tab-icon">🔍</div>探索</div>
-            <div class="tab"><div class="tab-icon">🔖</div>保存</div>
-            <div class="tab active"><div class="tab-icon">🗺️</div>マップ</div>
-            <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 06: FILTER ========== -->
-<section class="slide">
-  <div class="slide-bg"></div>
-  <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 05 — FILTER</div>
-  <div class="std-layout">
-    <div class="text-col">
-      <div class="mono-label reveal d1">CHOOSE RIGHT NOW</div>
-      <h2 class="slide-h2 reveal d2" data-e>今行ける場所だけを、<br>すばやく絞り込む</h2>
-      <p class="slide-p reveal d3" data-e>営業中・カテゴリ・エリア・価格帯を組み合わせて、今の気分に合う候補だけに集中。大量の保存リストから探すストレスを減らします。</p>
-      <div class="bullet-list reveal d4">
-        <div class="bullet-item" data-e>営業中のみ表示で、閉店中の候補を先に除外</div>
-        <div class="bullet-item" data-e>カテゴリ・都道府県・価格帯でシーンに合わせて絞り込み</div>
-        <div class="bullet-item" data-e>訪問日や訪問回数で、再訪候補も見つけやすい</div>
-      </div>
-    </div>
-    <!-- Phone: filter screen -->
-    <div class="phone-col reveal-r d3">
-      <div class="phone">
-        <div class="phone-screen filter-screen">
-          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
-          <div class="app-header">絞り込み・並べ替え</div>
-          <div class="screen-body" style="overflow:hidden;padding-bottom:4px;">
-            <div class="filter-section">
-              <div class="filter-section-label">営業状況</div>
-              <div class="filter-toggle-row">
-                <div class="filter-toggle-label" data-e>営業中のみ表示</div>
-                <div class="toggle-pill"><div class="toggle-dot"></div></div>
-              </div>
-            </div>
-            <div class="filter-section">
-              <div class="filter-section-label">カテゴリ</div>
-              <div class="filter-chips-row">
-                <div class="fc on">カフェ</div>
-                <div class="fc off">ラーメン</div>
-                <div class="fc off">イタリアン</div>
-                <div class="fc on">スイーツ</div>
-                <div class="fc off">バー</div>
-                <div class="fc off">焼肉</div>
-              </div>
-            </div>
-            <div class="filter-section">
-              <div class="filter-section-label" style="margin-bottom:3px;">並べ替え</div>
-              <div class="filter-sort-list">
-                <div class="sort-row active-row">
-                  <div class="sort-radio"><div class="sort-radio-dot"></div></div>
-                  <span>新着順</span>
-                </div>
-                <div class="sort-row">
-                  <div class="sort-radio"></div>
-                  <span>訪問日（新しい順）</span>
-                </div>
-                <div class="sort-row">
-                  <div class="sort-radio"></div>
-                  <span>訪問回数</span>
-                </div>
-                <div class="sort-row">
-                  <div class="sort-radio"></div>
-                  <span>名前順</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 07: CATEGORY ========== -->
-<section class="slide">
-  <div class="slide-bg"></div>
-  <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 06 — CATEGORY</div>
-  <div class="std-layout">
-    <div class="text-col">
-      <div class="mono-label reveal d1">KEEP IT CLEAN</div>
-      <h2 class="slide-h2 reveal d2" data-e>分類がきれいだから、<br>あとで探しやすい</h2>
-      <p class="slide-p reveal d3" data-e>保存時にカテゴリを自動提案し、必要に応じて手動で調整。地図上の見え方までそろうので、保存が増えても埋もれません。</p>
-      <div class="bullet-list reveal d4">
-        <div class="bullet-item" data-e>飲食・観光・買い物など幅広いカテゴリに対応</div>
-        <div class="bullet-item" data-e>自動分類が違っても、その場ですぐ修正できる</div>
-        <div class="bullet-item" data-e>カテゴリ変更はマップアイコンにもすぐ反映</div>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:.4em;margin-top:.3em;" class="reveal d5">
-        <span class="feat-tag tc">飲食 21種</span>
-        <span class="feat-tag tm">お酒・夜 3種</span>
-        <span class="feat-tag ta">文化・観光 4種</span>
-      </div>
-    </div>
-    <!-- Phone: category change modal -->
-    <div class="phone-col reveal-r d3">
-      <div class="phone">
-        <div class="phone-screen" style="background:#fff;">
-          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
-          <div class="app-header">カテゴリを変更</div>
-          <div class="screen-body" style="overflow:hidden;">
-            <!-- Currently selected -->
-            <div style="padding:clamp(4px,.7vw,7px) clamp(6px,1vw,10px);background:rgba(61,218,215,.08);border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0;">
-              <div style="font-size:clamp(5.5px,.78vw,8px);color:var(--app-gray);">現在のカテゴリ</div>
-              <div style="font-size:clamp(7px,1vw,11px);font-weight:700;color:var(--app-primary);margin-top:1px;">☕ カフェ</div>
-            </div>
-            <!-- Category grid -->
-            <div style="padding:clamp(3px,.5vw,5px);display:grid;grid-template-columns:repeat(3,1fr);gap:2px;overflow:hidden;">
-              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:rgba(61,218,215,.12);border:1.5px solid var(--app-primary);">
-                <div style="font-size:clamp(12px,1.8vw,20px);">☕</div>
-                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:700;color:var(--app-primary);margin-top:1px;">カフェ</div>
-              </div>
-              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
-                <div style="font-size:clamp(12px,1.8vw,20px);">🍜</div>
-                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">ラーメン</div>
-              </div>
-              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
-                <div style="font-size:clamp(12px,1.8vw,20px);">🍣</div>
-                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">寿司・海鮮</div>
-              </div>
-              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
-                <div style="font-size:clamp(12px,1.8vw,20px);">🍕</div>
-                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">イタリアン</div>
-              </div>
-              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
-                <div style="font-size:clamp(12px,1.8vw,20px);">🥩</div>
-                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">焼肉・BBQ</div>
-              </div>
-              <div style="text-align:center;padding:clamp(4px,.7vw,7px);border-radius:6px;background:#f5f5f5;">
-                <div style="font-size:clamp(12px,1.8vw,20px);">🍰</div>
-                <div style="font-size:clamp(4.5px,.65vw,7px);font-weight:600;color:var(--app-gray);margin-top:1px;">スイーツ</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 08: CHECK-IN ========== -->
-<section class="slide">
-  <div class="slide-bg"></div>
-  <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 07 — CHECK-IN</div>
-  <div class="std-layout">
-    <div class="text-col">
-      <div class="mono-label reveal d1">TURN VISITS INTO MEMORY</div>
-      <h2 class="slide-h2 reveal d2" data-e>行った場所を、<br>忘れない記録に変える</h2>
-      <p class="slide-p reveal d3" data-e>訪問した日、感じたこと、写真をまとめてチェックイン。良かった理由まで残るので、再訪や友人への共有にも使いやすくなります。</p>
-      <div class="bullet-list reveal d4">
-        <div class="bullet-item" data-e>カレンダーで訪問日を選び、同じ日の重複記録を防止</div>
-        <div class="bullet-item" data-e>その訪問だけのメモを残せるから、印象が混ざらない</div>
-        <div class="bullet-item" data-e>写真と一緒に保存して、記憶を見返しやすい</div>
-        <div class="bullet-item" data-e>訪問回数・最終訪問日を自動で更新</div>
-      </div>
-      <div style="margin-top:.3em;" class="reveal d5">
-        <span class="feat-tag tc">マップから直接</span>&ensp;<span class="feat-tag tm">ブックマーク詳細から</span>
-      </div>
-    </div>
-    <!-- Phone: check-in calendar -->
-    <div class="phone-col reveal-r d3">
-      <div class="phone">
-        <div class="phone-screen checkin-screen">
-          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
-          <div class="cal-header">訪問日を選択 — 2025年11月</div>
-          <div class="cal-grid">
-            <div class="cal-day-label">日</div><div class="cal-day-label">月</div><div class="cal-day-label">火</div>
-            <div class="cal-day-label">水</div><div class="cal-day-label">木</div><div class="cal-day-label">金</div><div class="cal-day-label">土</div>
-            <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
-            <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day">1</div><div class="cal-day">2</div>
-            <div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div>
-            <div class="cal-day visited">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div>
-            <div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div>
-            <div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day today">15</div><div class="cal-day">16</div>
-          </div>
-          <div class="memo-area">
-            <div class="memo-label">メモ（任意）</div>
-            <textarea class="memo-input" readonly>友人と来店。牡蠣のパスタが絶品。次は夜に来たい！</textarea>
-          </div>
-          <div style="padding:0 clamp(5px,.8vw,9px);flex-shrink:0;">
-            <div style="font-size:clamp(5.5px,.78vw,8px);color:var(--app-gray);margin-bottom:3px;">📷 写真を追加（任意）</div>
-            <div style="display:flex;gap:3px;">
-              <div style="width:clamp(22px,3.2vw,32px);height:clamp(22px,3.2vw,32px);border-radius:4px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:clamp(10px,1.5vw,16px);">+</div>
-            </div>
-          </div>
-          <div class="checkin-btn">✓ チェックインする</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 09: VISIT MEMO + ALBUM ========== -->
-<section class="slide">
-  <div class="slide-bg"></div>
-  <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 08 — MEMO & ALBUM</div>
-  <div class="std-layout">
-    <div class="text-col">
-      <div class="mono-label reveal d1">RECALL THE DETAILS</div>
-      <h2 class="slide-h2 reveal d2" data-e>何度行っても、<br>体験を分けて残せる</h2>
-      <p class="slide-p reveal d3" data-e>同じ場所に複数回訪問しても、日付ごとのメモと写真を個別に保存。前回何を頼んだか、誰と行ったかまで自然に振り返れます。</p>
-      <div class="customer-proof reveal d4"><span class="mark">VALUE</span><span data-e>リピートするほど、自分だけの場所履歴が濃くなる。</span></div>
-      <div class="bullet-list reveal d5">
-        <div class="bullet-item" data-e>訪問日・メモ・写真をひとつの体験として記録</div>
-        <div class="bullet-item" data-e>アルバム上でも最近のメモが見える</div>
-        <div class="bullet-item" data-e>再訪候補を選ぶときに、過去の満足ポイントを確認できる</div>
-      </div>
-    </div>
-    <!-- Two phones side by side -->
-    <div class="phone-col reveal-r d3" style="gap:clamp(0.5rem,1.2vw,1rem);">
-      <!-- Phone A: visit history with memo -->
-      <div class="phone" style="width:clamp(130px,17vw,200px);">
-        <div class="phone-screen visit-screen">
-          <div class="sb"><span>9:41</span><span>●●●</span></div>
-          <div class="visit-header-bar">訪問履歴 — 猿田彦珈琲</div>
-          <div class="screen-body">
-            <div class="visit-history">
-              <div class="visit-entry">
-                <div class="visit-date">2025.11.15（土）</div>
-                <div class="visit-memo-text" data-e>友人と来店。牡蠣のパスタが絶品！</div>
-                <div class="visit-photo">📷 写真 3枚</div>
-              </div>
-              <div class="visit-entry">
-                <div class="visit-date">2025.10.02（木）</div>
-                <div class="visit-memo-text" data-e>ランチ。アボカドトーストが◎</div>
-                <div class="visit-photo">📷 写真 1枚</div>
-              </div>
-              <div class="visit-entry">
-                <div class="visit-date">2025.08.20（水）</div>
-                <div class="visit-memo-text" data-e>初訪問。雰囲気最高。</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Phone B: album showing the memo -->
-      <div class="phone" style="width:clamp(130px,17vw,200px);">
-        <div class="phone-screen album-screen">
-          <div class="sb"><span>9:41</span><span>●●●</span></div>
-          <div class="app-header" style="background:var(--app-primary);color:#fff;">☕ イタリアン旅</div>
-          <div class="screen-body">
-            <div class="album-list-inner">
-              <div class="album-row">
-                <div class="album-thumb-box at-a">☕</div>
-                <div class="album-info-box">
-                  <div class="album-row-name">猿田彦珈琲 代官山</div>
-                  <div class="album-row-sub">3回訪問 · 最終 2025.11</div>
-                  <div class="visit-album-badge">📝 友人と来店。牡蠣のパスタが...</div>
-                </div>
-              </div>
-              <div class="album-row">
-                <div class="album-thumb-box at-b">🍕</div>
-                <div class="album-info-box">
-                  <div class="album-row-name">Savoy 元麻布</div>
-                  <div class="album-row-sub">1回訪問 · 2025.10</div>
-                  <div class="visit-album-badge">📝 マルゲリータが最高</div>
-                </div>
-              </div>
-              <div class="album-row">
-                <div class="album-thumb-box at-c">🍝</div>
-                <div class="album-info-box">
-                  <div class="album-row-name">Il Ristorante</div>
-                  <div class="album-row-sub">2回訪問 · 2025.09</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 10: ALBUM ========== -->
-<section class="slide">
-  <div class="slide-bg"></div>
-  <div class="slide-accent-bar"></div>
-  <div class="corner-mark tl mono-label">// 09 — ALBUM</div>
-  <div class="std-layout">
-    <div class="text-col">
-      <div class="mono-label reveal d1">CURATE YOUR PLACES</div>
-      <h2 class="slide-h2 reveal d2" data-e>旅も日常も、<br>テーマ別に振り返れる</h2>
-      <p class="slide-p reveal d3" data-e>訪問済みの場所を「京都旅行」「お気に入りカフェ」など自由なアルバムに整理。単なる記録ではなく、また見返したくなるコレクションになります。</p>
-      <div class="bullet-list reveal d4">
-        <div class="bullet-item" data-e>旅行・デート・友人との食事など、用途別に整理</div>
-        <div class="bullet-item" data-e>訪問写真・メモがまとまり、思い出を追いやすい</div>
-        <div class="bullet-item" data-e>チェックイン後にアルバム追加を促し、整理漏れを防ぐ</div>
-        <div class="bullet-item" data-e>アルバムから外してもブックマークは残るので安心</div>
-      </div>
-    </div>
-    <!-- Phone: album list -->
-    <div class="phone-col reveal-r d3">
-      <div class="phone">
-        <div class="phone-screen album-screen">
-          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
-          <div class="app-header">アルバム<span style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray)">3件</span></div>
-          <div class="screen-body">
-            <div class="album-list-inner">
-              <div class="album-row">
-                <div class="album-thumb-box at-a">🍝</div>
-                <div class="album-info-box">
-                  <div class="album-row-name" data-e>イタリアン旅</div>
-                  <div class="album-row-sub">8か所 · 最終訪問 2025.11</div>
-                </div>
-                <div class="album-row-arr">›</div>
-              </div>
-              <div class="album-row">
-                <div class="album-thumb-box at-b">☕</div>
-                <div class="album-info-box">
-                  <div class="album-row-name" data-e>お気に入りカフェ</div>
-                  <div class="album-row-sub">12か所 · 最終訪問 2025.12</div>
-                </div>
-                <div class="album-row-arr">›</div>
-              </div>
-              <div class="album-row">
-                <div class="album-thumb-box at-c">🗾</div>
-                <div class="album-info-box">
-                  <div class="album-row-name" data-e>京都旅行 2025</div>
-                  <div class="album-row-sub">6か所 · 最終訪問 2025.10</div>
-                </div>
-                <div class="album-row-arr">›</div>
-              </div>
-              <div style="margin-top:4px;background:rgba(61,218,215,.08);border:1.5px dashed rgba(61,218,215,.4);border-radius:8px;padding:clamp(6px,1vw,10px);text-align:center;color:var(--app-primary);font-size:clamp(6px,.88vw,9px);font-weight:700;">
-                ＋ 新しいアルバムを作成
-              </div>
-            </div>
-          </div>
-          <div class="tab-bar">
-            <div class="tab"><div class="tab-icon">🔍</div>探索</div>
-            <div class="tab"><div class="tab-icon">🔖</div>保存</div>
-            <div class="tab"><div class="tab-icon">🗺️</div>マップ</div>
-            <div class="tab active"><div class="tab-icon">👤</div>アカウント</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 11a: SUMMARY (集める・管理する) ========== -->
-<section class="slide">
-  <div class="slide-bg"></div>
-  <div class="corner-mark tl mono-label">// FEATURES 1/2</div>
+  <div class="corner-mark tl mono-label">// FEATURES</div>
   <div class="summary-layout">
     <div class="mono-label reveal d1">VALUE SUMMARY</div>
-    <h2 style="font-size:var(--h2);font-weight:900;line-height:1.1;" class="reveal d2" data-e>BOMDEが解決すること</h2>
+    <h2 style="font-size:var(--h2);font-weight:900;line-height:1.1;" class="reveal d2" data-e>BOMDEでできること</h2>
     <div class="sum-grid">
-      <div class="sum-card reveal d3"><div class="sum-icon">🔵</div><div class="sum-title" data-e>すぐ始められる</div><div class="sum-desc" data-e>面倒な登録を短縮し、保存体験へ直行。</div></div>
-      <div class="sum-card reveal d3"><div class="sum-icon">📸</div><div class="sum-title" data-e>SNSの行きたいを保存</div><div class="sum-desc" data-e>Instagram投稿から場所候補を抽出。</div></div>
-      <div class="sum-card reveal d3"><div class="sum-icon">🎵</div><div class="sum-title" data-e>動画で見た店も残せる</div><div class="sum-desc" data-e>TikTokの発見をあとで探せる場所へ。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">🗺️</div><div class="sum-title" data-e>既存保存も活かせる</div><div class="sum-desc" data-e>Googleマップの保存データも集約。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">🎨</div><div class="sum-title" data-e>地図で見分けやすい</div><div class="sum-desc" data-e>カテゴリ別アイコンで候補を直感把握。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">♥ ✓ ★</div><div class="sum-title" data-e>状態で整理できる</div><div class="sum-desc" data-e>行く前・行った後・お気に入りを分離。</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SLIDE 11b: SUMMARY (行動する・残す) ========== -->
-<section class="slide">
-  <div class="slide-bg"></div>
-  <div class="corner-mark tl mono-label">// FEATURES 2/2</div>
-  <div class="summary-layout">
-    <div class="mono-label reveal d1">VALUE SUMMARY</div>
-    <h2 style="font-size:var(--h2);font-weight:900;line-height:1.1;" class="reveal d2" data-e>BOMDEが解決すること</h2>
-    <div class="sum-grid">
-      <div class="sum-card reveal d3"><div class="sum-icon">🟢</div><div class="sum-title" data-e>今行ける店がわかる</div><div class="sum-desc" data-e>営業中だけに絞って候補選びを短縮。</div></div>
-      <div class="sum-card reveal d3"><div class="sum-icon">🔽</div><div class="sum-title" data-e>大量保存でも迷わない</div><div class="sum-desc" data-e>カテゴリ・地域・価格帯で整理。</div></div>
-      <div class="sum-card reveal d3"><div class="sum-icon">🔍</div><div class="sum-title" data-e>その場で追加できる</div><div class="sum-desc" data-e>地図検索から直接ブックマーク。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">📍</div><div class="sum-title" data-e>訪問を記録できる</div><div class="sum-desc" data-e>日付・メモ・写真で体験を残す。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">📂</div><div class="sum-title" data-e>思い出をまとめられる</div><div class="sum-desc" data-e>旅行やテーマごとのアルバムに整理。</div></div>
-      <div class="sum-card reveal d4"><div class="sum-icon">🏷️</div><div class="sum-title" data-e>あとから直せる</div><div class="sum-desc" data-e>カテゴリを調整し、見つけやすさを維持。</div></div>
+      <div class="sum-card reveal d3"><div class="sum-icon">📸</div><div class="sum-title" data-e>どこからでも集められる</div><div class="sum-desc" data-e>SNS・TikTok・Googleマップ・マップ検索など複数の経路から保存。</div></div>
+      <div class="sum-card reveal d3"><div class="sum-icon">💡</div><div class="sum-title" data-e>きっかけまで残せる</div><div class="sum-desc" data-e>保存元の投稿に戻れるので、なぜ気になったかまで思い出せる。</div></div>
+      <div class="sum-card reveal d3"><div class="sum-icon">🗺️</div><div class="sum-title" data-e>地図で一目でわかる</div><div class="sum-desc" data-e>48カテゴリのアイコンで、お店・スポット・イベントを直感把握。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">🟢</div><div class="sum-title" data-e>今日行ける場所が見つかる</div><div class="sum-desc" data-e>営業中・開催中イベント・現在地フィルターで、その日の行き先を決めやすく。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">📍</div><div class="sum-title" data-e>訪問体験を蓄積できる</div><div class="sum-desc" data-e>チェックイン・メモ・写真で、何度行っても記録が積み重なる。</div></div>
+      <div class="sum-card reveal d4"><div class="sum-icon">📂</div><div class="sum-title" data-e>テーマ別に振り返れる</div><div class="sum-desc" data-e>旅行・デート・日常など、文脈ごとのアルバムでまた見返したくなる記録に。</div></div>
     </div>
   </div>
 </section>
@@ -1281,7 +1227,7 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
     <div class="cta-sub reveal d4" data-e>保存して終わりだったブックマークを、探せる地図・選べる候補・見返せる思い出に。BOMDEは、発見から訪問後までをつなぐ場所管理アプリです。</div>
     <div class="cta-btns reveal d5">
       <div class="cta-pill pill-p">BOMDEを試す</div>
-      <div class="cta-pill pill-o">機能をもう一度見る</div>
+      <div class="cta-pill pill-o" onclick="document.querySelectorAll('.slide')[0].scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">機能をもう一度見る</div>
     </div>
     <div class="title-tags reveal d6">
       <span class="feat-tag tc">iOS</span>
