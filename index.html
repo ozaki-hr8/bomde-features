@@ -685,21 +685,26 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
         <div class="bullet-item" data-e>一度ブックマークした場所でも、別のSNS投稿やBOMDE投稿を同じブックマークに追加可能</div>
       </div>
     </div>
-    <!-- Phone: import screen -->
+    <!-- Phone: BOMDE import result -->
     <div class="phone-col reveal-r d3">
       <div class="phone">
         <div class="phone-screen import-screen">
           <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
-          <div class="app-header">SNSインポート</div>
+          <div class="app-header">ブックマーク・インポート</div>
           <div class="screen-body">
             <div class="import-tabs">
-              <div class="import-tab active">📸 Instagram</div>
-              <div class="import-tab">🎵 TikTok</div>
-              <div class="import-tab">🗺️ Gマップ</div>
+              <div class="import-tab active" style="display:flex;flex-direction:column;align-items:center;gap:1px;"><span style="font-size:clamp(10px,1.5vw,16px);">📸</span><span>Instagram</span></div>
+              <div class="import-tab" style="display:flex;flex-direction:column;align-items:center;gap:1px;"><span style="font-size:clamp(10px,1.5vw,16px);">🎵</span><span>TikTok</span></div>
+              <div class="import-tab" style="display:flex;flex-direction:column;align-items:center;gap:1px;"><span style="font-size:clamp(10px,1.5vw,16px);">🗺️</span><span>Gマップ</span></div>
             </div>
-            <div class="import-url-area">
-              <div class="import-url-box">https://www.instagram.com/p/C...</div>
-              <div class="import-url-hint">▸ 場所を解析中...</div>
+            <div style="padding:clamp(4px,.6vw,7px);flex-shrink:0;">
+              <div style="background:#fff;border-radius:8px;padding:clamp(4px,.7vw,7px) clamp(5px,.8vw,9px);display:flex;align-items:center;gap:5px;box-shadow:0 1px 4px rgba(0,0,0,.08);">
+                <div style="font-size:clamp(12px,1.8vw,18px);">📸</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:clamp(5px,.7vw,7.5px);font-weight:700;color:var(--app-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">tokyofoodie_jp の投稿</div>
+                  <div style="font-size:clamp(4px,.58vw,6px);color:var(--app-good);font-weight:700;">✓ 解析完了</div>
+                </div>
+              </div>
             </div>
             <div class="import-result">
               <div class="import-result-header">📍 3件の場所が見つかりました</div>
@@ -1274,54 +1279,49 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
         <div class="bullet-item" data-e>行きたい／行った／お気に入りを切り替えて、状態ごとに管理</div>
       </div>
     </div>
-    <!-- Phone: bookmark list -->
-    <div class="phone-col reveal-r d3">
-      <div class="phone">
+    <!-- Phone: filtered list + filter panel -->
+    <div class="phone-col reveal-r d3" style="gap:clamp(0.5rem,1.2vw,1rem);">
+      <!-- Phone A: filtered list result -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
         <div class="phone-screen">
           <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
-          <div class="app-header">ブックマーク<span style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray)">12件</span></div>
+          <div class="app-header">ブックマーク<span style="font-size:clamp(5px,.72vw,7.5px);color:var(--app-gray);margin-left:3px;">3件</span></div>
           <div class="screen-body">
             <div class="bk-tabs">
-              <div class="bk-tab active">♥ 行きたい (8)</div>
-              <div class="bk-tab">✓ 行った (4)</div>
+              <div class="bk-tab active">♥ 行きたい</div>
+              <div class="bk-tab">✓ 行った</div>
+              <div class="bk-tab">★ お気に入り</div>
             </div>
             <div class="bk-filter-row">
-              <div class="bk-chip">営業中</div>
-              <div class="bk-chip off">カフェ</div>
-              <div class="bk-chip off">東京</div>
+              <div class="bk-chip">☕ カフェ</div>
+              <div class="bk-chip">渋谷区</div>
+              <div class="bk-chip">🟢 営業中</div>
+              <div class="bk-chip off">新着順 ▾</div>
             </div>
             <div class="bk-list">
               <div class="bk-item">
                 <div class="bk-emoji">☕</div>
                 <div class="bk-info">
                   <div class="bk-name">猿田彦珈琲 代官山</div>
-                  <div class="bk-addr">渋谷区代官山町</div>
+                  <div class="bk-addr">渋谷区代官山町 · 🟢 営業中</div>
                 </div>
-                <div class="bk-status">♥</div>
+                <div class="bk-status" style="color:var(--app-primary);">♥</div>
               </div>
               <div class="bk-item">
-                <div class="bk-emoji">🍜</div>
+                <div class="bk-emoji">☕</div>
                 <div class="bk-info">
-                  <div class="bk-name">麺屋武蔵 新宿</div>
-                  <div class="bk-addr">新宿区西新宿</div>
+                  <div class="bk-name">Blue Bottle Coffee</div>
+                  <div class="bk-addr">渋谷区神南 · 🟢 営業中</div>
                 </div>
-                <div class="bk-status">♥</div>
+                <div class="bk-status" style="color:var(--app-primary);">♥</div>
               </div>
               <div class="bk-item">
-                <div class="bk-emoji">🍣</div>
+                <div class="bk-emoji">☕</div>
                 <div class="bk-info">
-                  <div class="bk-name">すし屋の磯松</div>
-                  <div class="bk-addr">港区六本木</div>
+                  <div class="bk-name">FUGLEN TOKYO</div>
+                  <div class="bk-addr">渋谷区富ヶ谷 · 🟢 営業中</div>
                 </div>
-                <div class="bk-status">♥</div>
-              </div>
-              <div class="bk-item">
-                <div class="bk-emoji">🍰</div>
-                <div class="bk-info">
-                  <div class="bk-name">Pierre Hermé Paris</div>
-                  <div class="bk-addr">渋谷区神宮前</div>
-                </div>
-                <div class="bk-status">♥</div>
+                <div class="bk-status" style="color:var(--app-primary);">♥</div>
               </div>
             </div>
           </div>
@@ -1330,6 +1330,53 @@ body.edit-active [data-e]:focus{outline:2px solid var(--cyan);outline-offset:2px
             <div class="tab active"><div class="tab-icon">🔖</div>保存</div>
             <div class="tab"><div class="tab-icon">🗺️</div>マップ</div>
             <div class="tab"><div class="tab-icon">👤</div>アカウント</div>
+          </div>
+        </div>
+      </div>
+      <!-- Phone B: filter & sort panel -->
+      <div class="phone" style="width:clamp(130px,17vw,200px);">
+        <div class="phone-screen" style="background:#f8fffe;">
+          <div class="sb"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-header">絞り込み・並べ替え<span style="font-size:clamp(8px,1.2vw,14px);color:var(--app-gray);">✕</span></div>
+          <div class="screen-body" style="padding:clamp(5px,.8vw,9px);display:flex;flex-direction:column;gap:clamp(5px,.9vw,8px);overflow:hidden;">
+            <!-- 並べ替え -->
+            <div style="flex-shrink:0;">
+              <div style="font-size:clamp(5px,.7vw,7px);font-weight:700;color:var(--app-gray);text-transform:uppercase;letter-spacing:.08em;margin-bottom:clamp(3px,.5vw,4px);">並べ替え</div>
+              <div style="display:flex;gap:3px;flex-wrap:wrap;">
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:var(--app-primary);color:#fff;white-space:nowrap;">新着順</div>
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:#eee;color:var(--app-gray);white-space:nowrap;">訪問日</div>
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:#eee;color:var(--app-gray);white-space:nowrap;">訪問回数</div>
+              </div>
+            </div>
+            <!-- カテゴリ -->
+            <div style="flex-shrink:0;">
+              <div style="font-size:clamp(5px,.7vw,7px);font-weight:700;color:var(--app-gray);text-transform:uppercase;letter-spacing:.08em;margin-bottom:clamp(3px,.5vw,4px);">カテゴリ</div>
+              <div style="display:flex;gap:3px;flex-wrap:wrap;">
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:#eee;color:var(--app-gray);white-space:nowrap;">すべて</div>
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:var(--app-primary);color:#fff;white-space:nowrap;">☕ カフェ</div>
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:#eee;color:var(--app-gray);white-space:nowrap;">🍜 ラーメン</div>
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:#eee;color:var(--app-gray);white-space:nowrap;">🍰 スイーツ</div>
+              </div>
+            </div>
+            <!-- エリア -->
+            <div style="flex-shrink:0;">
+              <div style="font-size:clamp(5px,.7vw,7px);font-weight:700;color:var(--app-gray);text-transform:uppercase;letter-spacing:.08em;margin-bottom:clamp(3px,.5vw,4px);">エリア</div>
+              <div style="display:flex;gap:3px;flex-wrap:wrap;">
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:#eee;color:var(--app-gray);white-space:nowrap;">すべて</div>
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:var(--app-primary);color:#fff;white-space:nowrap;">渋谷区</div>
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:#eee;color:var(--app-gray);white-space:nowrap;">港区</div>
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:#eee;color:var(--app-gray);white-space:nowrap;">新宿区</div>
+              </div>
+            </div>
+            <!-- 営業状況 -->
+            <div style="flex-shrink:0;">
+              <div style="font-size:clamp(5px,.7vw,7px);font-weight:700;color:var(--app-gray);text-transform:uppercase;letter-spacing:.08em;margin-bottom:clamp(3px,.5vw,4px);">営業状況</div>
+              <div style="display:flex;gap:3px;">
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:var(--app-primary);color:#fff;white-space:nowrap;">🟢 営業中のみ</div>
+                <div style="font-size:clamp(5px,.7vw,7px);padding:.22em .55em;border-radius:100px;font-weight:700;background:#eee;color:var(--app-gray);white-space:nowrap;">すべて</div>
+              </div>
+            </div>
+            <div style="background:var(--app-primary);color:#fff;border-radius:8px;padding:clamp(5px,.8vw,9px);text-align:center;font-size:clamp(6px,.88vw,9px);font-weight:700;margin-top:auto;flex-shrink:0;">この条件で絞り込む</div>
           </div>
         </div>
       </div>
